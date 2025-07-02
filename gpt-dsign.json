@@ -1,0 +1,128 @@
+{
+    "elementStyling": {
+      "cards": {
+        "background": "#151515",
+        "border": "#3D3D3D",
+        "shadow": "0 4px 12px rgba(255, 255, 255, 0.05)",
+        "icons": {
+          "fill": "#FFFFFF",
+          "background": "none",
+          "contextNote": "Icon fill is solid white for both pixel-based and fluid forms. DO NOT apply gradients."
+        },
+        "contentText": "#CFCFCF"
+      },
+      "buttons": {
+        "primary": {
+          "background": "linear-gradient(90deg, #FFE2FF 0%, #D3B1FF 100%)",
+          "text": "#151515",
+          "icon": "#151515",
+          "hover": {
+            "background": "linear-gradient(90deg, #FFB1F1 0%, #A687FF 100%)"
+          },
+          "contextNote": "Buttons use vibrant pastel gradients. DO NOT use solid colors or black backgrounds."
+        },
+        "secondary": {
+          "background": "#2D2D2D",
+          "text": "#FFFFFF",
+          "icon": "#FFFFFF",
+          "hover": {
+            "background": "#444"
+          }
+        }
+      },
+      "text": {
+        "headingPrimary": "#FFFFFF",
+        "headingSecondary": "#FFB1F1",
+        "body": "#D0CDE1",
+        "highlighted": "#FFB1F1",
+        "contextNote": "Pixelated headings use white or #FFB1F1. DO NOT use pure black for any text."
+      },
+      "backgrounds": {
+        "main": "#0D0D0D",
+        "cards": "#1A1A1A",
+        "gradient": {
+          "type": "radial",
+          "start": "#1A1A1A",
+          "end": "#0A0A0A",
+          "direction": "centered",
+          "opacity": 1
+        },
+        "contextNote": "Use dark matte backgrounds. Gradients only in content backgrounds or radial overlays. DO NOT apply gradients to text or cards directly."
+      },
+      "icons": {
+        "filled": "#FFFFFF",
+        "containers": "#2B2B2B",
+        "background": "transparent",
+        "contextNote": "Pixel icons should have no shadows or outlines. Keep backgrounds transparent."
+      },
+      "borders": {
+        "default": "#3D3D3D",
+        "active": "#FFB1F1",
+        "disabled": "#2B2B2B"
+      }
+    },
+    "visualEffects": {
+      "shadows": {
+        "cards": "0px 4px 12px rgba(255, 255, 255, 0.05)",
+        "buttons": "0px 2px 6px rgba(255, 255, 255, 0.1)",
+        "hover": "0px 4px 16px rgba(255, 177, 241, 0.15)",
+        "contextNote": "Shadows are subtle and soft. DO NOT use harsh black shadows or colored inner shadows."
+      },
+      "gradients": {
+        "buttonPrimary": "linear-gradient(90deg, #FFE2FF, #D3B1FF)",
+        "textHighlights": "#FFB1F1",
+        "contextNote": "Gradients are used on buttons and section transitions. NEVER apply gradients on body text or icons."
+      },
+      "borderRadius": {
+        "cards": "8px",
+        "buttons": "6px",
+        "icons": "4px",
+        "contextNote": "Use light rounding. DO NOT use full-rounded buttons or sharp square corners."
+      }
+    },
+    "componentStates": {
+      "buttons": {
+        "default": {
+          "background": "linear-gradient(90deg, #FFE2FF, #D3B1FF)",
+          "text": "#151515"
+        },
+        "hover": {
+          "background": "linear-gradient(90deg, #FFB1F1, #A687FF)"
+        },
+        "pressed": {
+          "background": "#FFC7FF",
+          "text": "#000000"
+        },
+        "disabled": {
+          "background": "#3A3A3A",
+          "text": "#888888"
+        },
+        "focus": {
+          "border": "2px solid #FFB1F1",
+          "outline": "none"
+        }
+      },
+      "cards": {
+        "default": {
+          "background": "#1A1A1A",
+          "text": "#CFCFCF"
+        },
+        "hover": {
+          "shadow": "0px 6px 16px rgba(255, 255, 255, 0.1)"
+        },
+        "active": {
+          "border": "1px solid #FFB1F1"
+        }
+      }
+    },
+    "rules": {
+      "DO_NOT": [
+        "Do NOT apply card background gradients to icons.",
+        "Do NOT use bright colors like red, green, or blue for text or buttons.",
+        "Do NOT use solid black (#000000) for backgrounds or texts.",
+        "Do NOT apply drop shadows on icons or pixel shapes.",
+        "Do NOT round corners beyond 8px unless specified.",
+        "Do NOT mix pastel gradients with solid dark icon fills."
+      ]
+    }
+  }

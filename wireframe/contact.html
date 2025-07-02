@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Createch - Contact Us</title>
+    <style>
+        /* Design System from claude-design.json - EXACT IMPLEMENTATION */
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-surface: #2a2a2a;
+            --accent: #e6b3ff;
+            --accent-secondary: #b366ff;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --grid-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: monospace, 'Courier New', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            letter-spacing: 0.1em;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Grid Background Pattern */
+        .grid-background {
+            background-image: 
+                linear-gradient(rgba(51, 51, 51, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 51, 51, 0.3) 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(42, 42, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--bg-primary);
+            padding: 0.8rem 2rem;
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(230, 179, 255, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, #8a4dcc 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 179, 255, 0.6);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-primary);
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(230, 179, 255, 0.5);
+        }
+
+        /* Pixel Cards */
+        .pixel-card {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-primary) 100%);
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(230, 179, 255, 0.3), inset 0 0 20px rgba(230, 179, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: none;
+        }
+
+        .card-content {
+            background: rgba(230, 179, 255, 0.1);
+            padding: 1rem;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Form Styling */
+        .contact-form {
+            background: rgba(42, 42, 42, 0.9);
+            border: 1px solid var(--accent);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            font-family: inherit;
+            border-radius: 0;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        /* Contact Info Styling */
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(230, 179, 255, 0.2);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+            margin: 0.25rem 0;
+        }
+
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Map placeholder */
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: var(--bg-surface);
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CREATECH</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Our Work</a></li>
+                <li><a href="contact.html" class="active">Contact Us</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Get A Quote</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p style="font-size: clamp(1rem, 2vw, 1.5rem); color: var(--text-secondary); margin-top: 1rem;">Estimate Your Project & Say Hi On Mail</p>
+            </div>
+        </section>
+
+        <!-- Contact Form and Info -->
+        <section class="page-section">
+            <div class="container">
+                <div class="grid grid-2">
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: 1rem; color: var(--accent); text-align: center; text-transform: uppercase;">Get A Quote</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Full name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Contact Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Select Services</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Choose a service...</option>
+                                    <option value="web-development">Website Development and Design</option>
+                                    <option value="mobile-app">Mobile Application</option>
+                                    <option value="ai-ml">Artificial Intelligence & Machine Learning</option>
+                                    <option value="cloud-consulting">Cloud Consulting</option>
+                                    <option value="database">Database Management</option>
+                                    <option value="ecommerce">eCommerce Solutions</option>
+                                    <option value="crm">CRM Implementation</option>
+                                    <option value="component-dev">Component Development</option>
+                                    <option value="software-dev">Software Development</option>
+                                    <option value="seo">SEO/SEM</option>
+                                    <option value="client-server">Client Server Application</option>
+                                    <option value="blockchain">Block Chain Consultancy</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">More Information</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your project requirements..."></textarea>
+                            </div>
+                            <button type="submit" class="cta-button" style="width: 100%;">Submit</button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div>
+                        <div class="pixel-card">
+                            <div class="card-title">Contact Information</div>
+                            <div class="card-content" style="min-height: auto; align-items: flex-start;">
+                                <div class="contact-info" style="width: 100%;">
+                                    <div class="contact-item">
+                                        <h4>📍 Main Office</h4>
+                                        <p>800 W. 79th Street</p>
+                                        <p>Willowbrook, IL 60527</p>
+                                        <p>Metropolitan Chicago</p>
+                                    </div>
+                                    
+                                    <div class="contact-item">
+                                        <h4>🌍 International Office</h4>
+                                        <p>608, Synergy court Kaanchpada</p>
+                                        <p>Malad (W), Mumbai-400064</p>
+                                        <p>India</p>
+                                    </div>
+                                    
+                                    <div class="contact-item">
+                                        <h4>📧 Email</h4>
+                                        <p><a href="mailto:info@createch.com">info@createch.com</a></p>
+                                        <p><a href="mailto:projects@createch.com">projects@createch.com</a></p>
+                                    </div>
+                                    
+                                    <div class="contact-item">
+                                        <h4>📞 Phone</h4>
+                                        <p><a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+                                        <p><a href="tel:+919123456789">+91 912 345 6789</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Hours and Social -->
+        <section class="page-section">
+            <div class="container">
+                <div class="grid grid-2">
+                    <div class="pixel-card">
+                        <div class="card-title">Business Hours</div>
+                        <div class="card-content" style="min-height: auto; align-items: flex-start; text-align: left;">
+                            <div style="width: 100%;">
+                                <p style="margin-bottom: 1rem;"><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</p>
+                                <p style="margin-bottom: 1rem;"><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
+                                <p style="margin-bottom: 1rem;"><strong>Sunday:</strong> Closed</p>
+                                <p style="margin-top: 2rem; color: var(--accent);">Emergency support available 24/7 for enterprise clients</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pixel-card">
+                        <div class="card-title">Follow Us</div>
+                        <div class="card-content" style="min-height: auto; align-items: flex-start; text-align: left;">
+                            <div style="width: 100%;">
+                                <p style="margin-bottom: 2rem;">Stay connected with us on social media for the latest updates and insights:</p>
+                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <a href="#" style="color: var(--accent); text-decoration: none; padding: 0.5rem; border: 1px solid var(--accent); transition: all 0.3s ease;">📘 Facebook</a>
+                                    <a href="#" style="color: var(--accent); text-decoration: none; padding: 0.5rem; border: 1px solid var(--accent); transition: all 0.3s ease;">🐦 Twitter</a>
+                                    <a href="#" style="color: var(--accent); text-decoration: none; padding: 0.5rem; border: 1px solid var(--accent); transition: all 0.3s ease;">💼 LinkedIn</a>
+                                    <a href="#" style="color: var(--accent); text-decoration: none; padding: 0.5rem; border: 1px solid var(--accent); transition: all 0.3s ease;">📷 Instagram</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="page-section">
+            <div class="container">
+                <h2 class="section-title">Find Us</h2>
+                <div class="map-placeholder">
+                    <div style="text-align: center;">
+                        <h3 style="color: var(--accent); margin-bottom: 1rem;">Interactive Map</h3>
+                        <p>Google Maps integration would be placed here</p>
+                        <p style="margin-top: 0.5rem;">Showing both Chicago and Mumbai office locations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="page-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="grid grid-2">
+                    <div class="pixel-card">
+                        <div class="card-title">Project Timelines</div>
+                        <div class="card-content" style="min-height: auto; align-items: flex-start; text-align: left;">
+                            <p><strong>Q: How long does a typical project take?</strong></p>
+                            <p style="margin-top: 0.5rem;">A: Project timelines vary based on complexity. Simple websites: 2-4 weeks, Complex applications: 3-6 months, Enterprise solutions: 6-12 months.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pixel-card">
+                        <div class="card-title">Pricing Structure</div>
+                        <div class="card-content" style="min-height: auto; align-items: flex-start; text-align: left;">
+                            <p><strong>Q: How do you determine project costs?</strong></p>
+                            <p style="margin-top: 0.5rem;">A: We provide custom quotes based on project scope, technology requirements, timeline, and complexity. Contact us for a detailed estimate.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pixel-card">
+                        <div class="card-title">Support & Maintenance</div>
+                        <div class="card-content" style="min-height: auto; align-items: flex-start; text-align: left;">
+                            <p><strong>Q: Do you provide ongoing support?</strong></p>
+                            <p style="margin-top: 0.5rem;">A: Yes, we offer comprehensive support packages including bug fixes, updates, security patches, and feature enhancements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pixel-card">
+                        <div class="card-title">Technology Stack</div>
+                        <div class="card-content" style="min-height: auto; align-items: flex-start; text-align: left;">
+                            <p><strong>Q: What technologies do you work with?</strong></p>
+                            <p style="margin-top: 0.5rem;">A: We work with modern tech stacks including React, Node.js, Python, cloud platforms (AWS, Azure), mobile technologies, and emerging tech like AI/ML and blockchain.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="page-section">
+            <div class="container">
+                <div class="pixel-card" style="text-align: center;">
+                    <div class="card-title">Ready to Start Your Project?</div>
+                    <div class="card-content">
+                        <h3 style="margin-bottom: 1rem;">Let's Discuss Your Ideas</h3>
+                        <p style="margin-bottom: 2rem;">We have various processes, methodologies and mantras which have helped us provide 100% Cost & Time Effective Solutions to our Clients.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="#" class="cta-button">Schedule Consultation</a>
+                            <a href="portfolio.html" style="background: transparent; color: var(--accent); border: 2px solid var(--accent); padding: 0.8rem 2rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; display: inline-block; transition: all 0.3s ease;">View Our Work</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Product Column -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Product</h3>
+                    <div class="footer-links">
+                        <a href="services.html">Overview</a>
+                        <a href="services.html">Pricing</a>
+                        <a href="services.html">Marketplace</a>
+                        <a href="services.html">Features</a>
+                        <a href="services.html">Integrations</a>
+                        <a href="services.html">Pricing</a>
+                    </div>
+                </div>
+                
+                <!-- Company Column -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Company</h3>
+                    <div class="footer-links">
+                        <a href="about.html">About</a>
+                        <a href="about.html">Team</a>
+                        <a href="#blog">Blog</a>
+                        <a href="#careers">Careers</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="#privacy">Privacy</a>
+                    </div>
+                </div>
+                
+                <!-- Resources Column -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Resources</h3>
+                    <div class="footer-links">
+                        <a href="#help">Help</a>
+                        <a href="#sales">Sales</a>
+                        <a href="#advertise">Advertise</a>
+                    </div>
+                </div>
+                
+                <!-- Legal Column -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Legal</h3>
+                    <div class="footer-links">
+                        <a href="#terms">Term of Services</a>
+                        <a href="#privacy">Privacy Policy</a>
+                    </div>
+                </div>
+                
+                <!-- Social Column -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Social</h3>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">DISCORD</a>
+                        <a href="#" class="social-link">REDDIT</a>
+                        <a href="#" class="social-link">TWITTER</a>
+                        <a href="#" class="social-link">LINKEDIN</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 CREATECH SOFTWARE CONSULTANCY. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* Footer Styles */
+        .footer {
+            background: var(--bg-surface);
+            border-top: 2px solid var(--accent);
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-title {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--grid-color);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(230, 179, 255, 0.1);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--grid-color);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Footer Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .footer-social {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .social-link {
+                flex: 1;
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</body>
+</html> 

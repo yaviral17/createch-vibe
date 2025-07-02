@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Createch - Software Consultancy Wireframe</title>
+    <style>
+        /* Design System from claude-design.json */
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-surface: #2a2a2a;
+            --accent: #e6b3ff;
+            --accent-secondary: #b366ff;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --grid-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: monospace, 'Courier New', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            letter-spacing: 0.1em;
+            line-height: 1.6;
+        }
+
+        /* Grid Background Pattern */
+        .grid-background {
+            background-image: 
+                linear-gradient(rgba(51, 51, 51, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 51, 51, 0.3) 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(42, 42, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--bg-primary);
+            padding: 0.8rem 2rem;
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(230, 179, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 179, 255, 0.6);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Sections */
+        .page-section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-primary);
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(230, 179, 255, 0.5);
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 0.8rem 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(230, 179, 255, 0.1);
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        /* Pixel Cards */
+        .pixel-card {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-primary) 100%);
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(230, 179, 255, 0.3), inset 0 0 20px rgba(230, 179, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: none;
+        }
+
+        .card-content {
+            background: rgba(230, 179, 255, 0.1);
+            padding: 1rem;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        /* Services Section */
+        .service-item {
+            text-align: center;
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent);
+            margin: 0 auto 1rem;
+            filter: drop-shadow(0 0 5px rgba(230, 179, 255, 0.5));
+        }
+
+        /* Portfolio Section */
+        .portfolio-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-surface);
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Team Section */
+        .team-member {
+            text-align: center;
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            background: var(--bg-surface);
+            border: 2px solid var(--accent);
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            background: rgba(42, 42, 42, 0.9);
+            border: 1px solid var(--accent);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--accent);
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--grid-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Modal/Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: var(--bg-surface);
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Indicators */
+        .page-indicator {
+            background: rgba(42, 42, 42, 0.9);
+            border: 1px solid var(--accent);
+            padding: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        /* Hover Effects */
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(230, 179, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CREATECH</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+            <button class="cta-button">Get in Touch</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Landing Page -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="page-indicator pulse-animation">🏠 LANDING PAGE WIREFRAME</div>
+                <h1>Software Consultancy Excellence</h1>
+                <p class="subtitle">Custom Development • Digital Transformation • XR/AR Solutions • Cloud Migration</p>
+                <div class="hero-buttons">
+                    <button class="cta-button">Start Your Project</button>
+                    <button class="btn-secondary">View Portfolio</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="page-section">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="grid grid-3">
+                    <div class="pixel-card hover-glow">
+                        <div class="card-title">Custom Development</div>
+                        <div class="card-content">
+                            <div class="service-icon"></div>
+                            <p>Tailored software solutions for your business needs</p>
+                        </div>
+                    </div>
+                    <div class="pixel-card hover-glow">
+                        <div class="card-title">Digital Transformation</div>
+                        <div class="card-content">
+                            <div class="service-icon"></div>
+                            <p>Modernize your business processes and technology</p>
+                        </div>
+                    </div>
+                    <div class="pixel-card hover-glow">
+                        <div class="card-title">XR/AR Solutions</div>
+                        <div class="card-content">
+                            <div class="service-icon"></div>
+                            <p>Immersive experiences and extended reality applications</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Page -->
+        <section id="about" class="page-section">
+            <div class="container">
+                <div class="page-indicator pulse-animation">👥 ABOUT US PAGE WIREFRAME</div>
+                <h2 class="section-title">About Createch</h2>
+                
+                <!-- Company Story -->
+                <div class="pixel-card">
+                    <div class="card-title">Our Story</div>
+                    <div class="card-content">
+                        <p>Company story, mission, and values presentation section</p>
+                    </div>
+                </div>
+
+                <!-- Team Profiles -->
+                <h3 class="section-title" style="font-size: 1.5rem; margin-top: 3rem;">Meet Our Team</h3>
+                <div class="grid grid-3">
+                    <div class="team-member pixel-card hover-glow">
+                        <div class="member-photo"></div>
+                        <h4>Team Member 1</h4>
+                        <p>CEO & Founder</p>
+                        <button class="btn-secondary">View Bio</button>
+                    </div>
+                    <div class="team-member pixel-card hover-glow">
+                        <div class="member-photo"></div>
+                        <h4>Team Member 2</h4>
+                        <p>CTO</p>
+                        <button class="btn-secondary">View Bio</button>
+                    </div>
+                    <div class="team-member pixel-card hover-glow">
+                        <div class="member-photo"></div>
+                        <h4>Team Member 3</h4>
+                        <p>Lead Developer</p>
+                        <button class="btn-secondary">View Bio</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Page -->
+        <section id="services" class="page-section">
+            <div class="container">
+                <div class="page-indicator pulse-animation">⚙️ SERVICES PAGE WIREFRAME</div>
+                <h2 class="section-title">Detailed Services</h2>
+                
+                <div class="grid grid-2">
+                    <div class="pixel-card">
+                        <div class="card-title">Custom Development</div>
+                        <div class="card-content">
+                            <ul style="text-align: left;">
+                                <li>Web Applications</li>
+                                <li>Mobile Apps</li>
+                                <li>Enterprise Software</li>
+                                <li>API Development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pixel-card">
+                        <div class="card-title">Cloud Migration</div>
+                        <div class="card-content">
+                            <ul style="text-align: left;">
+                                <li>AWS/Azure Solutions</li>
+                                <li>Serverless Architecture</li>
+                                <li>DevOps Implementation</li>
+                                <li>Security Optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Page -->
+        <section id="portfolio" class="page-section">
+            <div class="container">
+                <div class="page-indicator pulse-animation">💼 PORTFOLIO PAGE WIREFRAME</div>
+                <h2 class="section-title">Case Studies</h2>
+                
+                <div class="grid grid-3">
+                    <div class="portfolio-item pixel-card hover-glow">
+                        <div class="portfolio-image">Project Image</div>
+                        <div class="card-title">E-commerce Platform</div>
+                        <div class="card-content">
+                            <p>Custom e-commerce solution with advanced analytics</p>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                    <div class="portfolio-item pixel-card hover-glow">
+                        <div class="portfolio-image">Project Image</div>
+                        <div class="card-title">AR Mobile App</div>
+                        <div class="card-content">
+                            <p>Augmented reality application for retail visualization</p>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                    <div class="portfolio-item pixel-card hover-glow">
+                        <div class="portfolio-image">Project Image</div>
+                        <div class="card-title">Cloud Migration</div>
+                        <div class="card-content">
+                            <p>Enterprise cloud transformation project</p>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client Testimonials -->
+                <h3 class="section-title" style="font-size: 1.5rem; margin-top: 3rem;">Client Testimonials</h3>
+                <div class="pixel-card">
+                    <div class="card-content">
+                        <p>"Createch delivered exceptional results on our digital transformation project."</p>
+                        <p style="margin-top: 1rem; color: var(--accent);">- Client Name, Company</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page-section">
+            <div class="container">
+                <div class="page-indicator pulse-animation">📧 CONTACT PAGE WIREFRAME</div>
+                <h2 class="section-title">Get In Touch</h2>
+                
+                <div class="grid grid-2">
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: 1rem; color: var(--accent);">Contact Form</h3>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Project Type</label>
+                            <input type="text" id="project" name="project">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                        <button class="cta-button">Send Message</button>
+                    </div>
+
+                    <!-- Office Locations -->
+                    <div class="pixel-card">
+                        <div class="card-title">Office Locations</div>
+                        <div class="card-content">
+                            <div style="text-align: left;">
+                                <h4>Main Office</h4>
+                                <p>123 Tech Street<br>Innovation District<br>City, State 12345</p>
+                                <br>
+                                <h4>Satellite Office</h4>
+                                <p>456 Digital Ave<br>Tech Hub<br>City, State 67890</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Page -->
+        <section id="blog" class="page-section">
+            <div class="container">
+                <div class="page-indicator pulse-animation">📝 BLOG/INSIGHTS PAGE WIREFRAME</div>
+                <h2 class="section-title">Technical Insights</h2>
+                
+                <div class="grid grid-3">
+                    <div class="pixel-card hover-glow">
+                        <div class="card-title">Latest Article</div>
+                        <div class="card-content">
+                            <h4>The Future of XR Development</h4>
+                            <p>Exploring emerging trends in extended reality...</p>
+                            <button class="btn-secondary">Read More</button>
+                        </div>
+                    </div>
+                    <div class="pixel-card hover-glow">
+                        <div class="card-title">Tech Article</div>
+                        <div class="card-content">
+                            <h4>Cloud Architecture Best Practices</h4>
+                            <p>Building scalable cloud solutions...</p>
+                            <button class="btn-secondary">Read More</button>
+                        </div>
+                    </div>
+                    <div class="pixel-card hover-glow">
+                        <div class="card-title">Industry Insight</div>
+                        <div class="card-content">
+                            <h4>Digital Transformation Trends</h4>
+                            <p>What businesses need to know...</p>
+                            <button class="btn-secondary">Read More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="pixel-card" style="margin-top: 3rem;">
+                    <div class="card-title">Newsletter Signup</div>
+                    <div class="card-content">
+                        <p>Subscribe for the latest insights and updates</p>
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <input type="email" placeholder="Your email" style="flex: 1; padding: 0.8rem; background: var(--bg-primary); border: 1px solid var(--accent); color: var(--text-primary);">
+                            <button class="cta-button">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Createch</h3>
+                    <p>Premium software consultancy delivering innovative solutions for digital transformation.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Custom Development</a>
+                    <a href="#">Digital Transformation</a>
+                    <a href="#">XR/AR Solutions</a>
+                    <a href="#">Cloud Migration</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#about">About Us</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#blog">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">Email</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Createch Software Consultancy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Examples -->
+    
+    <!-- Contact Form Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="card-title">Quick Contact</div>
+            <div class="contact-form" style="background: none; border: none; padding: 1rem 0;">
+                <div class="form-group">
+                    <label for="modal-name">Name</label>
+                    <input type="text" id="modal-name" name="modal-name">
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">Email</label>
+                    <input type="email" id="modal-email" name="modal-email">
+                </div>
+                <div class="form-group">
+                    <label for="modal-message">Message</label>
+                    <textarea id="modal-message" name="modal-message" rows="3"></textarea>
+                </div>
+                <button class="cta-button">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Detail Modal -->
+    <div class="modal-overlay" id="portfolioModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <button class="modal-close">&times;</button>
+            <div class="card-title">Project Details</div>
+            <div class="card-content">
+                <div class="portfolio-image" style="margin-bottom: 1rem;">Project Gallery</div>
+                <h3>Project Name</h3>
+                <p>Detailed project description, technologies used, challenges solved, and results achieved.</p>
+                <div style="margin-top: 1rem;">
+                    <button class="btn-secondary">Live Demo</button>
+                    <button class="btn-secondary">Case Study</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Member Bio Modal -->
+    <div class="modal-overlay" id="teamModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="card-title">Team Member Bio</div>
+            <div class="card-content">
+                <div class="member-photo" style="margin-bottom: 1rem;"></div>
+                <h3>John Doe</h3>
+                <p>Senior Developer</p>
+                <p style="margin-top: 1rem;">Detailed bio, expertise, experience, and background information.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="#" style="color: var(--accent); margin-right: 1rem;">LinkedIn</a>
+                    <a href="#" style="color: var(--accent);">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple modal functionality for demonstration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show modals
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.getElementById('contactModal').style.display = 'flex';
+                });
+            });
+
+            // Close modals
+            document.querySelectorAll('.modal-close').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.closest('.modal-overlay').style.display = 'none';
+                });
+            });
+
+            // Close modal on overlay click
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                    }
+                });
+            });
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
