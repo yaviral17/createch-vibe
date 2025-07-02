@@ -2,6 +2,7 @@ Frontend Application Development
 I need to develop a frontend application with the following specifications: HTML, CSS, JS, Tailwind CSS, Motion
 Pages Required: index.html, about.html, services.html, portfolio.html, contact.html, blog.html
 
+Loading Page – Loading page with animated elements and loading text and 1-100 % progress text
 Landing Page – Hero section with animated elements, services overview, and CTA buttons
 About Us – Company story, team profiles, and values presentation
 Services – Detailed breakdown of software consultancy offerings (Custom Development, Digital Transformation, XR/AR Solutions, Cloud Migration)

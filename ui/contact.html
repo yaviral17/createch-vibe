@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Createch</title>
+    <meta name="description" content="Get in touch with Createch. Contact our team for XR consultations, project inquiries, and partnership opportunities.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(42, 42, 42, 0.9), rgba(26, 26, 26, 0.9));
+            border: 2px solid var(--accent);
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(230, 179, 255, 0.05) 2px,
+                rgba(230, 179, 255, 0.05) 4px
+            );
+            pointer-events: none;
+        }
+
+        .office-card {
+            background: rgba(42, 42, 42, 0.9);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .office-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(42, 42, 42, 0.5);
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-method:hover {
+            border-color: var(--accent);
+            background: rgba(42, 42, 42, 0.8);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, rgba(42, 42, 42, 0.9), rgba(26, 26, 26, 0.9));
+            border: 2px solid var(--accent);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(230, 179, 255, 0.05) 2px,
+                rgba(230, 179, 255, 0.05) 4px
+            );
+            pointer-events: none;
+        }
+
+        .form-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-floating {
+            position: relative;
+        }
+
+        .form-floating input,
+        .form-floating textarea,
+        .form-floating select {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        .form-floating input:focus,
+        .form-floating textarea:focus,
+        .form-floating select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(230, 179, 255, 0.3);
+        }
+
+        .form-floating label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+            pointer-events: none;
+            background: var(--bg-primary);
+            padding: 0 0.5rem;
+        }
+
+        .form-floating input:focus + label,
+        .form-floating input:not(:placeholder-shown) + label,
+        .form-floating textarea:focus + label,
+        .form-floating textarea:not(:placeholder-shown) + label,
+        .form-floating select:focus + label,
+        .form-floating select:not([value=""]) + label {
+            top: -0.5rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            transform: translateY(0);
+        }
+
+        .team-contact {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(42, 42, 42, 0.9);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .team-contact:hover {
+            border-color: var(--accent);
+            transform: translateX(10px);
+        }
+
+        .team-avatar {
+            width: 64px;
+            height: 64px;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: rgba(42, 42, 42, 0.5);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .faq-question:hover {
+            background: rgba(42, 42, 42, 0.8);
+            color: var(--accent);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-contact {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Createch</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="#" class="btn btn-primary">Get in Touch</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-hero">
+                <h1 class="hero-title glow-effect">LET'S CREATE TOGETHER</h1>
+                <p class="subtitle mb-3">Ready to Transform Your Business with XR?</p>
+                <p class="body-text">Whether you need a consultation, want to discuss a project, or explore partnership opportunities, our team is here to help you navigate the future of extended reality.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="subtitle">Multiple ways to reach our team</p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="contact-method">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem;">EMAIL US</h4>
+                        <p class="body-text">hello@createchxr.com</p>
+                        <p class="caption">We respond within 24 hours</p>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem;">CALL US</h4>
+                        <p class="body-text">+1 (555) 123-TECH</p>
+                        <p class="caption">Mon-Fri 9AM-6PM PST</p>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">💬</div>
+                    <div>
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem;">LIVE CHAT</h4>
+                        <p class="body-text">Available on our website</p>
+                        <p class="caption">Instant response during business hours</p>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">📅</div>
+                    <div>
+                        <h4 style="color: var(--accent); margin-bottom: 0.5rem;">SCHEDULE MEETING</h4>
+                        <p class="body-text">Book a consultation</p>
+                        <p class="caption">Free 30-minute strategy session</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2 class="section-title mb-3">START YOUR PROJECT</h2>
+                    <p class="body-text mb-3">Tell us about your vision and we'll help you bring it to life with cutting-edge XR technology.</p>
+                    
+                    <div class="pixel-card">
+                        <div class="card-title">WHAT TO EXPECT</div>
+                        <div class="card-content" style="text-align: left;">
+                            <ul style="list-style: none; color: var(--text-secondary);">
+                                <li>• Free initial consultation</li>
+                                <li>• Detailed project proposal</li>
+                                <li>• Technology recommendations</li>
+                                <li>• Timeline and budget estimate</li>
+                                <li>• Prototype development plan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-content">
+                        <form id="contactForm" action="#" method="POST">
+                            <div class="form-row">
+                                <div class="form-floating">
+                                    <input type="text" id="firstName" name="firstName" placeholder=" " required>
+                                    <label for="firstName">FIRST NAME *</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" id="lastName" name="lastName" placeholder=" " required>
+                                    <label for="lastName">LAST NAME *</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-floating">
+                                    <input type="email" id="email" name="email" placeholder=" " required>
+                                    <label for="email">EMAIL ADDRESS *</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="tel" id="phone" name="phone" placeholder=" ">
+                                    <label for="phone">PHONE NUMBER</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-floating">
+                                    <input type="text" id="company" name="company" placeholder=" ">
+                                    <label for="company">COMPANY</label>
+                                </div>
+                                <div class="form-floating">
+                                    <select id="interest" name="interest" required>
+                                        <option value="">Select Interest</option>
+                                        <option value="ar">Augmented Reality</option>
+                                        <option value="vr">Virtual Reality</option>
+                                        <option value="mr">Mixed Reality</option>
+                                        <option value="consultation">General Consultation</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <label for="interest">PRIMARY INTEREST *</label>
+                                </div>
+                            </div>
+
+                            <div class="form-floating">
+                                <select id="budget" name="budget">
+                                    <option value="">Select Budget Range</option>
+                                    <option value="under-50k">Under $50,000</option>
+                                    <option value="50k-100k">$50,000 - $100,000</option>
+                                    <option value="100k-250k">$100,000 - $250,000</option>
+                                    <option value="over-250k">Over $250,000</option>
+                                </select>
+                                <label for="budget">PROJECT BUDGET</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                                <label for="message">PROJECT DETAILS *</label>
+                            </div>
+
+                            <div style="margin: 2rem 0;">
+                                <label style="display: flex; align-items: center; gap: 1rem; color: var(--text-secondary);">
+                                    <input type="checkbox" name="newsletter" style="transform: scale(1.2);">
+                                    <span>Subscribe to our newsletter for XR insights and updates</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+                                SEND MESSAGE
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Contacts -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">MEET THE TEAM</h2>
+                <p class="subtitle">Direct contact with our experts</p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="team-contact">
+                    <div class="team-avatar">AC</div>
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 0.5rem;">ALEX CHEN</h3>
+                        <p class="caption mb-1">CEO & FOUNDER</p>
+                        <p class="body-text">Strategy and partnerships</p>
+                        <div class="social-links mt-1">
+                            <a href="mailto:alex@createchxr.com" class="social-link">EMAIL</a>
+                            <a href="#" class="social-link">LINKEDIN</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-contact">
+                    <div class="team-avatar">SR</div>
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 0.5rem;">SARAH RODRIGUEZ</h3>
+                        <p class="caption mb-1">CTO & CO-FOUNDER</p>
+                        <p class="body-text">Technical architecture</p>
+                        <div class="social-links mt-1">
+                            <a href="mailto:sarah@createchxr.com" class="social-link">EMAIL</a>
+                            <a href="#" class="social-link">GITHUB</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-contact">
+                    <div class="team-avatar">MT</div>
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 0.5rem;">MARCUS THOMPSON</h3>
+                        <p class="caption mb-1">LEAD UX DESIGNER</p>
+                        <p class="body-text">User experience design</p>
+                        <div class="social-links mt-1">
+                            <a href="mailto:marcus@createchxr.com" class="social-link">EMAIL</a>
+                            <a href="#" class="social-link">BEHANCE</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-contact">
+                    <div class="team-avatar">DK</div>
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 0.5rem;">DAVID KUMAR</h3>
+                        <p class="caption mb-1">BUSINESS DEVELOPMENT</p>
+                        <p class="body-text">Partnership opportunities</p>
+                        <div class="social-links mt-1">
+                            <a href="mailto:david@createchxr.com" class="social-link">EMAIL</a>
+                            <a href="#" class="social-link">LINKEDIN</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Office Locations -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">OUR OFFICES</h2>
+                <p class="subtitle">Global presence, local expertise</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="office-card">
+                    <div class="pixel-icon mb-2">SF</div>
+                    <h3 style="color: var(--accent); margin: 1rem 0;">SAN FRANCISCO</h3>
+                    <p class="body-text mb-2">Headquarters</p>
+                    <p class="caption">123 Tech Street<br>San Francisco, CA 94105<br>+1 (555) 123-TECH</p>
+                </div>
+
+                <div class="office-card">
+                    <div class="pixel-icon mb-2">NY</div>
+                    <h3 style="color: var(--accent); margin: 1rem 0;">NEW YORK</h3>
+                    <p class="body-text mb-2">East Coast Operations</p>
+                    <p class="caption">456 Innovation Ave<br>New York, NY 10001<br>+1 (555) 456-TECH</p>
+                </div>
+
+                <div class="office-card">
+                    <div class="pixel-icon mb-2">LD</div>
+                    <h3 style="color: var(--accent); margin: 1rem 0;">LONDON</h3>
+                    <p class="body-text mb-2">European Hub</p>
+                    <p class="caption">789 Future Lane<br>London EC1A 1BB, UK<br>+44 20 7123 4567</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+                <p class="subtitle">Quick answers to common questions</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does a typical XR project take?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="body-text">Project timelines vary based on complexity, but most projects range from 6-16 weeks. Simple AR prototypes can be completed in 2-4 weeks, while complex VR applications may take 3-6 months.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What platforms do you develop for?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="body-text">We develop for all major platforms including iOS/Android (AR), Oculus/HTC Vive (VR), HoloLens (MR), and web-based XR solutions using WebXR standards.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you provide ongoing support and maintenance?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="body-text">Yes, we offer comprehensive support packages including bug fixes, performance optimization, platform updates, and feature enhancements to keep your XR solution current.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can you help with XR strategy and consulting?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="body-text">Absolutely! Our team provides strategic consulting to help you identify the best XR opportunities for your business, from initial concept through implementation and scaling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-3">
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Createch</h3>
+                    <p class="body-text mb-2">Transforming reality through innovative XR solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">LINKEDIN</a>
+                        <a href="#" class="social-link">TWITTER</a>
+                        <a href="#" class="social-link">GITHUB</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">SERVICES</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">Custom Development</a></li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">Digital Transformation</a></li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">XR/AR Solutions</a></li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">Cloud Migration</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">CONTACT</h4>
+                    <p class="body-text">Ready to start your XR journey?</p>
+                    <a href="#" class="btn btn-primary mt-2">Get in Touch</a>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border-color); margin-top: 3rem; padding-top: 2rem; text-align: center;">
+                <p class="caption">© 2024 Createch. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Enhanced form handling and FAQ functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ toggle functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+                    
+                    // Toggle current item
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Enhanced form submission
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Validate required fields
+                const requiredFields = ['firstName', 'lastName', 'email', 'interest', 'message'];
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!data[field]) {
+                        isValid = false;
+                        const input = document.getElementById(field);
+                        input.style.borderColor = '#ef4444';
+                        setTimeout(() => {
+                            input.style.borderColor = '';
+                        }, 3000);
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'SENDING MESSAGE...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Show success message
+                    alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Remove focused state from labels
+                    const labels = contactForm.querySelectorAll('label');
+                    labels.forEach(label => {
+                        label.style.top = '';
+                        label.style.fontSize = '';
+                        label.style.color = '';
+                    });
+                    
+                    console.log('Form submitted:', data);
+                }, 2000);
+            });
+
+            // Floating label animation
+            const floatingInputs = document.querySelectorAll('.form-floating input, .form-floating textarea, .form-floating select');
+            
+            floatingInputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', () => {
+                    if (!input.value) {
+                        input.parentElement.classList.remove('focused');
+                    }
+                });
+                
+                // Check if input has value on load
+                if (input.value) {
+                    input.parentElement.classList.add('focused');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
