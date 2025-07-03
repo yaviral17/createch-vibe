@@ -3,702 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Createch - Our Work</title>
+    <title>Portfolio - Createch</title>
+    <meta name="description" content="Explore our portfolio of cutting-edge XR projects and case studies. See how we've transformed businesses with AR, VR, and MR solutions.">
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        /* Design System from claude-design.json - EXACT IMPLEMENTATION */
-        :root {
-            --bg-primary: #1a1a1a;
-            --bg-surface: #2a2a2a;
-            --accent: #e6b3ff;
-            --accent-secondary: #b366ff;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --grid-color: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: monospace, 'Courier New', monospace;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            letter-spacing: 0.1em;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* Grid Background Pattern */
-        .grid-background {
-            background-image: 
-                linear-gradient(rgba(51, 51, 51, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(51, 51, 51, 0.3) 1px, transparent 1px);
-            background-size: 20px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: rgba(42, 42, 42, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--accent);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .portfolio-filter {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent);
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-            color: var(--bg-primary);
-            padding: 0.8rem 2rem;
-            border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(230, 179, 255, 0.4);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, var(--accent-secondary) 0%, #8a4dcc 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(230, 179, 255, 0.6);
-        }
-
-        .btn-secondary {
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
             background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            padding: 0.8rem 2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+            font-family: inherit;
+            font-size: 0.9rem;
         }
 
-        .btn-secondary:hover {
+        .filter-btn.active,
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
             background: rgba(230, 179, 255, 0.1);
-            color: var(--text-primary);
-            border-color: var(--text-primary);
         }
 
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .page-section {
-            padding: 4rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--text-primary);
-            font-weight: bold;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 4vw, 4rem);
-            margin-bottom: 1rem;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(230, 179, 255, 0.5);
-        }
-
-        /* Pixel Cards */
-        .pixel-card {
-            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-primary) 100%);
-            border: 2px solid var(--accent);
-            padding: 2rem;
-            box-shadow: 0 0 20px rgba(230, 179, 255, 0.3), inset 0 0 20px rgba(230, 179, 255, 0.1);
+        .portfolio-item {
             position: relative;
             overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .card-title {
-            background: var(--accent);
-            color: var(--bg-primary);
-            padding: 0.5rem 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 1rem;
-            text-shadow: none;
-        }
-
-        .card-content {
-            background: rgba(230, 179, 255, 0.1);
-            padding: 1rem;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        /* Portfolio specific styling */
-        .portfolio-item .card-content {
-            align-items: flex-start;
-            text-align: left;
-            min-height: 250px;
+            cursor: pointer;
         }
 
         .portfolio-image {
             width: 100%;
-            height: 120px;
-            background: var(--bg-surface);
-            border: 1px solid var(--accent);
-            margin-bottom: 1rem;
+            height: 250px;
+            background: linear-gradient(45deg, var(--bg-surface), var(--bg-primary));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            border: 2px solid var(--accent);
+            margin-bottom: 1rem;
+            transition: var(--transition-smooth);
         }
 
-        .project-tech {
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin: 0.5rem 0;
-            font-style: italic;
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(230, 179, 255, 0.3);
         }
 
-        /* Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 26, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-smooth);
         }
 
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
         }
 
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        .hover-glow:hover {
-            box-shadow: 0 0 20px rgba(230, 179, 255, 0.5);
-        }
-
-        /* Testimonial styling */
-        .testimonial {
+        .client-testimonial {
             background: rgba(42, 42, 42, 0.9);
-            border: 1px solid var(--accent);
+            border-left: 4px solid var(--accent);
             padding: 2rem;
-            text-align: center;
+            margin: 2rem 0;
             position: relative;
         }
 
-        .testimonial-content {
+        .testimonial-quote {
+            font-size: 1.2rem;
             font-style: italic;
+            color: var(--text-primary);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
         }
 
         .testimonial-author {
             color: var(--accent);
             font-weight: bold;
+            text-transform: uppercase;
         }
 
-        /* Stats styling */
-        .stats-section {
-            background: rgba(42, 42, 42, 0.3);
-            padding: 4rem 0;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
             text-align: center;
-        }
-
-        .stat-item {
             padding: 2rem;
+            background: rgba(42, 42, 42, 0.5);
+            border: 1px solid var(--border-color);
         }
 
         .stat-number {
             font-size: 3rem;
             color: var(--accent);
             font-weight: bold;
-            display: block;
+            margin-bottom: 0.5rem;
         }
 
-        .stat-label {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            margin-top: 0.5rem;
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .grid-2,
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-surface);
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            width: 800px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <!-- Grid Background -->
     <div class="grid-background"></div>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">CREATECH</div>
+            <a href="index.html" class="logo">Createch</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html" class="active">Our Work</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Get in Touch</a></li>
             </ul>
-            <a href="contact.html" class="cta-button">Get A Quote</a>
+            <button class="mobile-menu-toggle">☰</button>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <h1>Our Work</h1>
-                <p style="font-size: clamp(1rem, 2vw, 1.5rem); color: var(--text-secondary); margin-top: 1rem;">Showcasing successful projects and client transformations</p>
+    <!-- Hero Section -->
+    <section class="hero-section" style="min-height: 60vh;">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title">OUR PORTFOLIO</h1>
+                <p class="subtitle mb-3">Transformative XR Projects & Case Studies</p>
+                <p class="body-text">Discover how we've helped leading organizations create immersive experiences that drive engagement, enhance training, and revolutionize user interactions.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Portfolio Items -->
-        <section class="page-section">
-            <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-                <div class="grid grid-3">
-                    <div class="portfolio-item pixel-card hover-glow">
-                        <div class="portfolio-image">E-commerce Platform Screenshot</div>
-                        <div class="card-title">RetailTech E-commerce</div>
-                        <div class="card-content">
-                            <p style="margin-bottom: 1rem;">Complete e-commerce platform with advanced analytics, inventory management, and multi-payment gateway integration. Achieved 40% increase in conversion rates.</p>
-                            <div class="project-tech">Technologies: React, Node.js, MongoDB, Stripe</div>
-                            <a href="#" class="btn-secondary">View Case Study</a>
+    <!-- Portfolio Stats -->
+    <section class="section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <p class="caption">PROJECTS COMPLETED</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <p class="caption">ENTERPRISE CLIENTS</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1M+</div>
+                    <p class="caption">USERS REACHED</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <p class="caption">CLIENT SATISFACTION</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Filter -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">FEATURED PROJECTS</h2>
+                <p class="subtitle">Filter by technology and industry</p>
+            </div>
+
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">ALL PROJECTS</button>
+                <button class="filter-btn" data-filter="ar">AUGMENTED REALITY</button>
+                <button class="filter-btn" data-filter="vr">VIRTUAL REALITY</button>
+                <button class="filter-btn" data-filter="mr">MIXED REALITY</button>
+                <button class="filter-btn" data-filter="enterprise">ENTERPRISE</button>
+                <button class="filter-btn" data-filter="consumer">CONSUMER</button>
+            </div>
+
+            <div class="grid grid-3">
+                <!-- Project 1: Manufacturing Training VR -->
+                <div class="portfolio-item" data-category="vr enterprise" data-modal="project1">
+                    <div class="portfolio-image">
+                        <div class="pixel-icon" style="font-size: 4rem;">🏭</div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="text-center">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">VIEW PROJECT</h4>
+                            <p class="btn btn-primary">LEARN MORE</p>
                         </div>
                     </div>
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">MANUFACTURING TRAINING VR</h3>
+                    <p class="caption mb-1">FORTUNE 500 MANUFACTURING</p>
+                    <p class="body-text">Immersive safety training platform reducing workplace accidents by 45%</p>
+                </div>
 
-                    <div class="portfolio-item pixel-card hover-glow">
-                        <div class="portfolio-image">Mobile App Interface</div>
-                        <div class="card-title">FinanceFlow Mobile App</div>
-                        <div class="card-content">
-                            <p style="margin-bottom: 1rem;">Cross-platform financial management app with real-time synchronization, budgeting tools, and expense tracking. Over 50K downloads in first quarter.</p>
-                            <div class="project-tech">Technologies: React Native, Firebase, REST APIs</div>
-                            <a href="#" class="btn-secondary">View Case Study</a>
+                <!-- Project 2: AR Product Visualization -->
+                <div class="portfolio-item" data-category="ar consumer" data-modal="project2">
+                    <div class="portfolio-image">
+                        <div class="pixel-icon" style="font-size: 4rem;">📱</div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="text-center">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">VIEW PROJECT</h4>
+                            <p class="btn btn-primary">LEARN MORE</p>
                         </div>
                     </div>
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">AR PRODUCT CATALOG</h3>
+                    <p class="caption mb-1">RETAIL & E-COMMERCE</p>
+                    <p class="body-text">Interactive product visualization increasing conversion rates by 60%</p>
+                </div>
 
-                    <div class="portfolio-item pixel-card hover-glow">
-                        <div class="portfolio-image">Cloud Architecture Diagram</div>
-                        <div class="card-title">CloudMigrate Enterprise</div>
-                        <div class="card-content">
-                            <p style="margin-bottom: 1rem;">Enterprise cloud migration from legacy systems to AWS infrastructure. Reduced operational costs by 60% while improving scalability and security.</p>
-                            <div class="project-tech">Technologies: AWS, Docker, Kubernetes, CI/CD</div>
-                            <a href="#" class="btn-secondary">View Case Study</a>
+                <!-- Project 3: Medical Training MR -->
+                <div class="portfolio-item" data-category="mr enterprise" data-modal="project3">
+                    <div class="portfolio-image">
+                        <div class="pixel-icon" style="font-size: 4rem;">🏥</div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="text-center">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">VIEW PROJECT</h4>
+                            <p class="btn btn-primary">LEARN MORE</p>
                         </div>
                     </div>
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">SURGICAL TRAINING MR</h3>
+                    <p class="caption mb-1">HEALTHCARE INSTITUTION</p>
+                    <p class="body-text">Mixed reality surgical simulator improving training efficiency by 70%</p>
+                </div>
 
-                    <div class="portfolio-item pixel-card hover-glow">
-                        <div class="portfolio-image">AI Dashboard Interface</div>
-                        <div class="card-title">SmartAnalytics AI</div>
-                        <div class="card-content">
-                            <p style="margin-bottom: 1rem;">AI-powered business intelligence platform with predictive analytics and automated reporting. Improved decision-making speed by 65%.</p>
-                            <div class="project-tech">Technologies: Python, TensorFlow, Power BI, Azure</div>
-                            <a href="#" class="btn-secondary">View Case Study</a>
+                <!-- Project 4: Virtual Showroom -->
+                <div class="portfolio-item" data-category="vr consumer" data-modal="project4">
+                    <div class="portfolio-image">
+                        <div class="pixel-icon" style="font-size: 4rem;">🏠</div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="text-center">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">VIEW PROJECT</h4>
+                            <p class="btn btn-primary">LEARN MORE</p>
                         </div>
                     </div>
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">VIRTUAL REAL ESTATE</h3>
+                    <p class="caption mb-1">REAL ESTATE AGENCY</p>
+                    <p class="body-text">Immersive property tours enabling remote viewing and decision-making</p>
+                </div>
 
-                    <div class="portfolio-item pixel-card hover-glow">
-                        <div class="portfolio-image">IoT Monitoring Dashboard</div>
-                        <div class="card-title">IndustrialIoT Monitor</div>
-                        <div class="card-content">
-                            <p style="margin-bottom: 1rem;">Real-time industrial IoT monitoring system with sensor data analytics and predictive maintenance alerts. Reduced downtime by 45%.</p>
-                            <div class="project-tech">Technologies: IoT Sensors, Node.js, InfluxDB, Grafana</div>
-                            <a href="#" class="btn-secondary">View Case Study</a>
+                <!-- Project 5: AR Maintenance -->
+                <div class="portfolio-item" data-category="ar enterprise" data-modal="project5">
+                    <div class="portfolio-image">
+                        <div class="pixel-icon" style="font-size: 4rem;">🔧</div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="text-center">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">VIEW PROJECT</h4>
+                            <p class="btn btn-primary">LEARN MORE</p>
                         </div>
                     </div>
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">AR MAINTENANCE GUIDE</h3>
+                    <p class="caption mb-1">AEROSPACE COMPANY</p>
+                    <p class="body-text">Augmented reality maintenance instructions reducing error rates by 80%</p>
+                </div>
 
-                    <div class="portfolio-item pixel-card hover-glow">
-                        <div class="portfolio-image">Blockchain Application</div>
-                        <div class="card-title">CryptoSecure Platform</div>
-                        <div class="card-content">
-                            <p style="margin-bottom: 1rem;">Blockchain-based secure document management system with smart contracts and digital signatures. Enhanced security compliance by 90%.</p>
-                            <div class="project-tech">Technologies: Ethereum, Solidity, Web3.js, IPFS</div>
-                            <a href="#" class="btn-secondary">View Case Study</a>
+                <!-- Project 6: Educational VR -->
+                <div class="portfolio-item" data-category="vr consumer" data-modal="project6">
+                    <div class="portfolio-image">
+                        <div class="pixel-icon" style="font-size: 4rem;">🎓</div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <div class="text-center">
+                            <h4 style="color: var(--accent); margin-bottom: 1rem;">VIEW PROJECT</h4>
+                            <p class="btn btn-primary">LEARN MORE</p>
                         </div>
+                    </div>
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">HISTORICAL VR EXPERIENCE</h3>
+                    <p class="caption mb-1">EDUCATIONAL INSTITUTION</p>
+                    <p class="body-text">Immersive historical recreations enhancing student engagement by 85%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">CLIENT TESTIMONIALS</h2>
+                <p class="subtitle">What our clients say about working with us</p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="client-testimonial">
+                    <p class="testimonial-quote">"Createch transformed our training program completely. The VR solution they developed reduced our training time by 50% while improving safety compliance significantly."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Dr. Sarah Mitchell</div>
+                        <div class="testimonial-title">Chief Safety Officer, Manufacturing Corp</div>
+                    </div>
+                </div>
+
+                <div class="client-testimonial">
+                    <p class="testimonial-quote">"The AR product visualization tool has revolutionized our customer experience. Sales conversions increased by 60% since implementation."</p>
+                    <div class="testimonial-author">Michael Chen - E-commerce Director, RetailPlus</div>
+                </div>
+
+                <div class="client-testimonial">
+                    <p class="testimonial-quote">"Working with Createch was seamless. Their expertise in mixed reality helped us create a surgical training platform that exceeds our expectations."</p>
+                    <div class="testimonial-author">Dr. Amanda Rodriguez - Chief Medical Officer, MedTrain Institute</div>
+                </div>
+
+                <div class="client-testimonial">
+                    <p class="testimonial-quote">"The virtual property tours have been a game-changer for our business. Clients can now view properties remotely, increasing our reach by 300%."</p>
+                    <div class="testimonial-author">David Park - CEO, Prime Realty Group</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section">
+        <div class="container">
+            <div class="pixel-card glow-effect text-center" style="max-width: 800px; margin: 0 auto;">
+                <div class="card-title">READY TO CREATE YOUR SUCCESS STORY?</div>
+                <div class="card-content">
+                    <p class="body-text mb-3">Join our portfolio of satisfied clients who have transformed their businesses with cutting-edge XR solutions. Let's discuss your project today.</p>
+                    
+                    <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                        <a href="contact.html" class="btn btn-primary">START YOUR PROJECT</a>
+                        <a href="services.html" class="btn btn-secondary">VIEW SERVICES</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Client Testimonials -->
-        <section class="page-section">
-            <div class="container">
-                <h2 class="section-title">Client Testimonials</h2>
-                <div class="grid grid-3">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            "I have gotten at least 50 times the value from Createch. Their e-commerce solution transformed our business completely."
+    <!-- Modals for Project Details -->
+    <!-- Project 1 Modal -->
+    <div id="project1" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="section-title mb-3">MANUFACTURING TRAINING VR</h2>
+            <div class="grid grid-2">
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">PROJECT OVERVIEW</h3>
+                    <p class="body-text mb-3">Developed a comprehensive VR training platform for a Fortune 500 manufacturing company to improve safety protocols and reduce workplace accidents.</p>
+                    
+                    <h4 style="color: var(--accent); margin: 1.5rem 0 1rem;">KEY FEATURES</h4>
+                    <ul style="list-style: none; color: var(--text-secondary);">
+                        <li>• Realistic factory environment simulation</li>
+                        <li>• Hazard identification scenarios</li>
+                        <li>• Emergency response training</li>
+                        <li>• Progress tracking and analytics</li>
+                        <li>• Multi-language support</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">RESULTS ACHIEVED</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">45%</div>
+                            <p class="caption">ACCIDENT REDUCTION</p>
                         </div>
-                        <div class="testimonial-author">
-                            <strong>John Richardson</strong><br>
-                            CEO, RetailTech Solutions
+                        <div class="stat-card">
+                            <div class="stat-number">50%</div>
+                            <p class="caption">TRAINING TIME SAVED</p>
                         </div>
                     </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            "You guys rock! I don't know what else to say. Createch is exactly what our business has been lacking. Thank You!"
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Christian List</strong><br>
-                            CTO, FinanceFlow Inc.
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            "Needless to say we are extremely satisfied with the results. I couldn't have asked for more than this."
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Beth Kovalcik</strong><br>
-                            Operations Director, IndustrialTech
-                        </div>
-                    </div>
+                    
+                    <h4 style="color: var(--accent); margin: 1.5rem 0 1rem;">TECHNOLOGIES USED</h4>
+                    <p class="caption">Unity 3D • Oculus SDK • Hand Tracking • Analytics API</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <!-- Project Statistics -->
-        <section class="stats-section">
-            <div class="container">
-                <h2 class="section-title" style="color: var(--text-primary); margin-bottom: 3rem;">Our Track Record</h2>
-                <div class="grid grid-3">
-                    <div class="stat-item">
-                        <span class="stat-number">150+</span>
-                        <div class="stat-label">Projects Completed</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">25+</span>
-                        <div class="stat-label">Countries Served</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Industries Served -->
-        <section class="page-section">
-            <div class="container">
-                <div class="pixel-card">
-                    <div class="card-title">Industries We Serve</div>
-                    <div class="card-content" style="min-height: auto; text-align: left;">
-                        <div class="grid grid-3" style="margin: 0;">
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">Technology</h4>
-                                <p style="margin-bottom: 1rem;">Software platforms, SaaS solutions, tech startups, enterprise applications</p>
-                            </div>
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">Finance</h4>
-                                <p style="margin-bottom: 1rem;">Banking systems, fintech applications, trading platforms, payment gateways</p>
-                            </div>
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">Healthcare</h4>
-                                <p style="margin-bottom: 1rem;">Medical management systems, telemedicine, health analytics, compliance solutions</p>
-                            </div>
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">E-commerce</h4>
-                                <p style="margin-bottom: 1rem;">Online marketplaces, retail platforms, inventory management, logistics systems</p>
-                            </div>
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">Manufacturing</h4>
-                                <p style="margin-bottom: 1rem;">Industrial IoT, automation systems, supply chain management, quality control</p>
-                            </div>
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">Education</h4>
-                                <p style="margin-bottom: 1rem;">Learning management systems, educational apps, virtual classrooms, assessment tools</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="page-section">
-            <div class="container">
-                <div class="pixel-card" style="text-align: center;">
-                    <div class="card-title">Ready to Start Your Project?</div>
-                    <div class="card-content">
-                        <h3 style="margin-bottom: 1rem;">Let's Build Something Amazing Together</h3>
-                        <p style="margin-bottom: 2rem;">Join our list of satisfied clients and transform your business with our proven solutions</p>
-                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                            <a href="contact.html" class="cta-button">Start Your Project</a>
-                            <a href="services.html" class="btn-secondary">View Services</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+    <!-- Additional modals would follow the same pattern for projects 2-6 -->
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <!-- Product Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Product</h3>
-                    <div class="footer-links">
-                        <a href="services.html">Overview</a>
-                        <a href="services.html">Pricing</a>
-                        <a href="services.html">Marketplace</a>
-                        <a href="services.html">Features</a>
-                        <a href="services.html">Integrations</a>
-                        <a href="services.html">Pricing</a>
-                    </div>
-                </div>
-                
-                <!-- Company Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Company</h3>
-                    <div class="footer-links">
-                        <a href="about.html">About</a>
-                        <a href="about.html">Team</a>
-                        <a href="#blog">Blog</a>
-                        <a href="#careers">Careers</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="#privacy">Privacy</a>
-                    </div>
-                </div>
-                
-                <!-- Resources Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Resources</h3>
-                    <div class="footer-links">
-                        <a href="#help">Help</a>
-                        <a href="#sales">Sales</a>
-                        <a href="#advertise">Advertise</a>
-                    </div>
-                </div>
-                
-                <!-- Legal Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Legal</h3>
-                    <div class="footer-links">
-                        <a href="#terms">Term of Services</a>
-                        <a href="#privacy">Privacy Policy</a>
-                    </div>
-                </div>
-                
-                <!-- Social Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Social</h3>
-                    <div class="footer-social">
-                        <a href="#" class="social-link">DISCORD</a>
-                        <a href="#" class="social-link">REDDIT</a>
-                        <a href="#" class="social-link">TWITTER</a>
+            <div class="grid grid-3">
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Createch</h3>
+                    <p class="body-text mb-2">Transforming reality through innovative XR solutions.</p>
+                    <div class="social-links">
                         <a href="#" class="social-link">LINKEDIN</a>
+                        <a href="#" class="social-link">TWITTER</a>
+                        <a href="#" class="social-link">GITHUB</a>
                     </div>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">SERVICES</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">Custom Development</a></li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">Digital Transformation</a></li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">XR/AR Solutions</a></li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">Cloud Migration</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">CONTACT</h4>
+                    <p class="body-text">Ready to start your XR journey?</p>
+                    <a href="contact.html" class="btn btn-primary mt-2">Get in Touch</a>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2024 CREATECH SOFTWARE CONSULTANCY. ALL RIGHTS RESERVED.</p>
+            <div style="border-top: 1px solid var(--border-color); margin-top: 3rem; padding-top: 2rem; text-align: center;">
+                <p class="caption">© 2024 Createch. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <style>
-        /* Footer Styles */
-        .footer {
-            background: var(--bg-surface);
-            border-top: 2px solid var(--accent);
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
-        }
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Portfolio filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.dataset.filter;
 
-        .footer-title {
-            color: var(--text-primary);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 0.1em;
-        }
+                    // Update active button
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
 
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
+                    // Filter items
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.category.includes(filter)) {
+                            item.style.display = 'block';
+                            item.style.animation = 'fadeInUp 0.5s ease';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
 
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+            // Modal functionality
+            const modalTriggers = document.querySelectorAll('[data-modal]');
+            const modals = document.querySelectorAll('.modal');
+            const modalCloses = document.querySelectorAll('.modal-close');
 
-        .footer-links a:hover {
-            color: var(--accent);
-        }
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalId = trigger.dataset.modal;
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
 
-        .footer-social {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
+            modalCloses.forEach(close => {
+                close.addEventListener('click', () => {
+                    const modal = close.closest('.modal');
+                    if (modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
 
-        .social-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--grid-color);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
+            // Close modal on backdrop click
+            modals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
 
-        .social-link:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            background: rgba(230, 179, 255, 0.1);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--grid-color);
-            padding-top: 2rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* Footer Responsive */
-        @media (max-width: 1024px) {
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .footer-social {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .social-link {
-                flex: 1;
-                min-width: 120px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-    </style>
+            // Close modal on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const activeModal = document.querySelector('.modal.active');
+                    if (activeModal) {
+                        activeModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

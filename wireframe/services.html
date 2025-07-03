@@ -3,674 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Createch - Services</title>
-    <style>
-        /* Design System from claude-design.json - EXACT IMPLEMENTATION */
-        :root {
-            --bg-primary: #1a1a1a;
-            --bg-surface: #2a2a2a;
-            --accent: #e6b3ff;
-            --accent-secondary: #b366ff;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --grid-color: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: monospace, 'Courier New', monospace;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            letter-spacing: 0.1em;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* Grid Background Pattern */
-        .grid-background {
-            background-image: 
-                linear-gradient(rgba(51, 51, 51, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(51, 51, 51, 0.3) 1px, transparent 1px);
-            background-size: 20px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: rgba(42, 42, 42, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--accent);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent);
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-            color: var(--bg-primary);
-            padding: 0.8rem 2rem;
-            border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(230, 179, 255, 0.4);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, var(--accent-secondary) 0%, #8a4dcc 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(230, 179, 255, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            padding: 0.8rem 2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(230, 179, 255, 0.1);
-            color: var(--text-primary);
-            border-color: var(--text-primary);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .page-section {
-            padding: 4rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--text-primary);
-            font-weight: bold;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 4vw, 4rem);
-            margin-bottom: 1rem;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(230, 179, 255, 0.5);
-        }
-
-        /* Pixel Cards */
-        .pixel-card {
-            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-primary) 100%);
-            border: 2px solid var(--accent);
-            padding: 2rem;
-            box-shadow: 0 0 20px rgba(230, 179, 255, 0.3), inset 0 0 20px rgba(230, 179, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .card-title {
-            background: var(--accent);
-            color: var(--bg-primary);
-            padding: 0.5rem 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 1rem;
-            text-shadow: none;
-        }
-
-        .card-content {
-            background: rgba(230, 179, 255, 0.1);
-            padding: 1rem;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        /* Service Card specific styling */
-        .service-card .card-content {
-            min-height: 300px;
-            align-items: flex-start;
-            text-align: left;
-        }
-
-        /* Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        .hover-glow:hover {
-            box-shadow: 0 0 20px rgba(230, 179, 255, 0.5);
-        }
-
-        /* Service Features List */
-        .service-features {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0;
-        }
-
-        .service-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(230, 179, 255, 0.2);
-        }
-
-        .service-features li:before {
-            content: "▶ ";
-            color: var(--accent);
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        /* Service Icons */
-        .service-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--accent);
-            margin: 0 auto 1rem;
-            filter: drop-shadow(0 0 5px rgba(230, 179, 255, 0.5));
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .grid-2,
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Services - Createch</title>
+    <meta name="description" content="Comprehensive XR services including Custom Development, Digital Transformation, AR/VR Solutions, and Cloud Migration.">
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <!-- Grid Background -->
     <div class="grid-background"></div>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">CREATECH</div>
+            <a href="index.html" class="logo">Createch</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="services.html" class="active">Services</a></li>
-                <li><a href="portfolio.html">Our Work</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Get in Touch</a></li>
             </ul>
-            <a href="contact.html" class="cta-button">Get A Quote</a>
+            <button class="mobile-menu-toggle">☰</button>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <h1>Our Services</h1>
-                <p style="font-size: clamp(1rem, 2vw, 1.5rem); color: var(--text-secondary); margin-top: 1rem;">Comprehensive software solutions for your business needs</p>
+    <!-- Hero Section -->
+    <section class="hero-section" style="min-height: 60vh;">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title">OUR SERVICES</h1>
+                <p class="subtitle mb-3">Comprehensive digital solutions for every business need</p>
+                <p class="body-text">From XR development to cloud consulting, we offer end-to-end technology services that transform businesses and create exceptional user experiences.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Featured Services -->
-        <section class="page-section">
-            <div class="container">
-                <h2 class="section-title">Core Services</h2>
-                <div class="grid grid-3">
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">Web Development</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">Createch is here to help you create a strong and visible presence online, we design based on a keen understanding of your business, goals, and ideas.</p>
-                            <ul class="service-features">
-                                <li>Responsive Web Design</li>
-                                <li>E-commerce Development</li>
-                                <li>Progressive Web Apps</li>
-                                <li>Custom CMS Solutions</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+    <!-- Main Services Grid -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-3">
+                <!-- XR Development -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">XR DEVELOPMENT</h3>
+                    <p class="body-text">Createch is here to help you create a strong and visible presence in the digital realm, we design based on a keen understanding of your business, goals, and ideas.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
+                </div>
 
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">Cloud Consultancy</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">Our team is experienced in a variety of cloud computing solutions, such as cloud migration strategy, cloud migration services and cloud-native design and development.</p>
-                            <ul class="service-features">
-                                <li>AWS & Azure Solutions</li>
-                                <li>Cloud Migration Strategy</li>
-                                <li>DevOps Implementation</li>
-                                <li>Serverless Architecture</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+                <!-- Cloud Consultancy -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">CLOUD CONSULTANCY</h3>
+                    <p class="body-text">Our team is experienced in a variety of cloud computing solutions, such as cloud migration strategy, cloud migration services and cloud-native design and development.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
+                </div>
 
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">Power BI</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">Do more with less using an end-to-end BI platform to create a single source of truth, uncover more powerful insights, and translate them into impact.</p>
-                            <ul class="service-features">
-                                <li>Data Visualization</li>
-                                <li>Interactive Dashboards</li>
-                                <li>Business Analytics</li>
-                                <li>Real-time Reporting</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+                <!-- Power BI -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">POWER BI</h3>
+                    <p class="body-text">Do more with less using an end-to-end BI platform to create a single source of truth, uncover more powerful insights, and translate them into impact.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
+                </div>
 
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">Mobile Application</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">We at Createch develop Mobile Applications using the latest technological trends and provide the best looking, easy to use applications for your Business Idea.</p>
-                            <ul class="service-features">
-                                <li>Native iOS/Android</li>
-                                <li>Cross-platform Solutions</li>
-                                <li>React Native Development</li>
-                                <li>Flutter Applications</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+                <!-- Mobile Application -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">MOBILE APPLICATION</h3>
+                    <p class="body-text">We at Createch develop Mobile Applications using the latest technological trends and provide the best looking, easy to use applications for your Business Idea.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
+                </div>
 
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">UI/UX Design</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">This plays an immensely important role when it comes to creating Web/Desktop/Mobile software and application.</p>
-                            <ul class="service-features">
-                                <li>User Experience Design</li>
-                                <li>User Interface Design</li>
-                                <li>Prototyping & Wireframing</li>
-                                <li>Design System Creation</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+                <!-- UI/UX -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">UI/UX</h3>
+                    <p class="body-text">This plays an immensely important role when it comes to creating Web/Desktop/Mobile software and application.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
+                </div>
 
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">Bubble.io (No code)</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">No-code development platforms (NCDPs) allow programmers and non-programmers to create application software through graphical user interfaces and configuration instead of traditional computer programming.</p>
-                            <ul class="service-features">
-                                <li>Rapid Prototyping</li>
-                                <li>Visual Development</li>
-                                <li>Database Integration</li>
-                                <li>API Connections</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+                <!-- Bubble.io (No code) -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">BUBBLE.IO (NO CODE)</h3>
+                    <p class="body-text">No-code development platforms (NCDPs) allow programmers and non-programmers to create application software through graphical user interfaces and configuration instead of traditional computer programming.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
+                </div>
 
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">AI/ML</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">The allowance and processes to give programs access to connect and essentially, communicate with other programs. Their APIs are their languages.</p>
-                            <ul class="service-features">
-                                <li>Machine Learning Models</li>
-                                <li>Natural Language Processing</li>
-                                <li>Computer Vision</li>
-                                <li>Predictive Analytics</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+                <!-- AI/ML -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">AI/ML</h3>
+                    <p class="body-text">The allowance and processes to give programs access to connect and essentially, communicate with other programs. Their APIs are their languages.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
+                </div>
 
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">IoT Solutions</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">The Internet of Things, or "IoT" for short, is about extending the power of the internet beyond computers and smartphones to a whole range of other things, processes, and environments.</p>
-                            <ul class="service-features">
-                                <li>Smart Device Integration</li>
-                                <li>Sensor Networks</li>
-                                <li>Real-time Monitoring</li>
-                                <li>Industrial IoT</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+                <!-- IOT -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">IOT</h3>
+                    <p class="body-text">The Internet of Things, or "IoT" for short, is about extending the power of the internet beyond computers and smartphones to a whole range of other things, processes, and environments.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
+                </div>
 
-                    <div class="pixel-card service-card hover-glow">
-                        <div class="card-title">Block Chain Consultancy</div>
-                        <div class="card-content">
-                            <div class="service-icon" style="align-self: center; margin-bottom: 1rem;"></div>
-                            <p style="margin-bottom: 1rem;">The new era of digital transformation is inevitable. Businesses must change the way they operate and manage their data to remain competitive. However, with the ever-growing pile of data and the complexity of managing it, many organizations struggle to keep up.</p>
-                            <ul class="service-features">
-                                <li>Smart Contracts</li>
-                                <li>DeFi Solutions</li>
-                                <li>Cryptocurrency Integration</li>
-                                <li>Blockchain Architecture</li>
-                            </ul>
-                            <a href="contact.html" class="btn-secondary">Learn more</a>
-                        </div>
+                <!-- Block Chain Consultancy -->
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">BLOCK CHAIN CONSULTANCY</h3>
+                    <p class="body-text">The new era of digital transformation is inevitable. Businesses must change the way they operate and manage their data to remain competitive. However, with the ever-growing pile of data and the complexity of managing it, many organizations struggle to keep up.</p>
+                    <div class="mt-3">
+                        <a href="contact.html" class="btn btn-secondary">LEARN MORE</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Service Benefits -->
-        <section class="page-section">
-            <div class="container">
+    <!-- Service Process -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">OUR DEVELOPMENT PROCESS</h2>
+                <p class="subtitle">From concept to deployment in structured phases</p>
+            </div>
+
+            <div class="grid grid-4">
+                <div class="profile-card text-center">
+                    <div class="pixel-icon">01</div>
+                    <h3 style="color: var(--accent); margin: 1rem 0;">DISCOVERY</h3>
+                    <p class="body-text">Requirements analysis, feasibility study, and technology assessment to define project scope.</p>
+                </div>
+
+                <div class="profile-card text-center">
+                    <div class="pixel-icon">02</div>
+                    <h3 style="color: var(--accent); margin: 1rem 0;">DESIGN</h3>
+                    <p class="body-text">UX wireframes, 3D prototypes, and interactive mockups to visualize the experience.</p>
+                </div>
+
+                <div class="profile-card text-center">
+                    <div class="pixel-icon">03</div>
+                    <h3 style="color: var(--accent); margin: 1rem 0;">DEVELOPMENT</h3>
+                    <p class="body-text">Agile development with continuous integration and regular milestone demonstrations.</p>
+                </div>
+
+                <div class="profile-card text-center">
+                    <div class="pixel-icon">04</div>
+                    <h3 style="color: var(--accent); margin: 1rem 0;">DEPLOYMENT</h3>
+                    <p class="body-text">Testing, optimization, deployment, and ongoing support for your XR solution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Solutions -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">INDUSTRY SOLUTIONS</h2>
+                <p class="subtitle">Specialized XR applications across various sectors</p>
+            </div>
+
+            <div class="grid grid-3">
                 <div class="pixel-card">
-                    <div class="card-title">Why Choose Our Services?</div>
-                    <div class="card-content" style="text-align: left; min-height: auto;">
-                        <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">Trusted by the world's best organizations, for 16 years and running, it has been delivering smiles to hundreds of IT advisors, developers, users, and business owners.</p>
-                        <div class="grid grid-2">
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">✓ Timely Service</h4>
-                                <p style="margin-bottom: 2rem;">Provide users with appropriate view and access permissions to requests, problems, changes, contracts, assets, solutions, and reports with our experienced professionals.</p>
-                                
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">✓ Qualified Team</h4>
-                                <p>Our team consists of qualified employees and developers with extensive experience in the IT & Software Industry.</p>
-                            </div>
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">✓ Cost Effective</h4>
-                                <p style="margin-bottom: 2rem;">We have various processes, methodologies and mantras which have helped us provide 100% Cost & Time Effective Solutions to our Clients.</p>
-                                
-                                <h4 style="color: var(--accent); margin-bottom: 1rem;">✓ Global Reach</h4>
-                                <p>We have satisfied clients we have served globally with our comprehensive range of services.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="page-section">
-            <div class="container">
-                <div class="pixel-card" style="text-align: center;">
-                    <div class="card-title">Ready to Get Started?</div>
+                    <div class="card-title">HEALTHCARE</div>
                     <div class="card-content">
-                        <h3 style="margin-bottom: 1rem;">Find Your Solution</h3>
-                        <p style="margin-bottom: 2rem;">Let's discuss which service best fits your business needs</p>
-                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                            <a href="contact.html" class="cta-button">Get A Quote</a>
-                            <a href="portfolio.html" class="btn-secondary">View Our Work</a>
-                        </div>
+                        <div class="pixel-icon mb-2">🏥</div>
+                        <h4 style="color: var(--accent); margin-bottom: 1rem;">MEDICAL XR</h4>
+                        <ul style="list-style: none; color: var(--text-secondary);">
+                            <li>• Surgical Training Simulations</li>
+                            <li>• Medical Visualization</li>
+                            <li>• Patient Education Tools</li>
+                            <li>• Therapy & Rehabilitation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pixel-card">
+                    <div class="card-title">MANUFACTURING</div>
+                    <div class="card-content">
+                        <div class="pixel-icon mb-2">🏭</div>
+                        <h4 style="color: var(--accent); margin-bottom: 1rem;">INDUSTRIAL XR</h4>
+                        <ul style="list-style: none; color: var(--text-secondary);">
+                            <li>• Assembly Line Training</li>
+                            <li>• Equipment Maintenance</li>
+                            <li>• Quality Control Systems</li>
+                            <li>• Safety Protocols</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pixel-card">
+                    <div class="card-title">EDUCATION</div>
+                    <div class="card-content">
+                        <div class="pixel-icon mb-2">🎓</div>
+                        <h4 style="color: var(--accent); margin-bottom: 1rem;">LEARNING XR</h4>
+                        <ul style="list-style: none; color: var(--text-secondary);">
+                            <li>• Interactive Classrooms</li>
+                            <li>• Historical Recreations</li>
+                            <li>• Science Simulations</li>
+                            <li>• Language Learning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pixel-card">
+                    <div class="card-title">RETAIL</div>
+                    <div class="card-content">
+                        <div class="pixel-icon mb-2">🛍</div>
+                        <h4 style="color: var(--accent); margin-bottom: 1rem;">COMMERCE XR</h4>
+                        <ul style="list-style: none; color: var(--text-secondary);">
+                            <li>• Virtual Try-On</li>
+                            <li>• Product Visualization</li>
+                            <li>• Virtual Showrooms</li>
+                            <li>• Interactive Catalogs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pixel-card">
+                    <div class="card-title">REAL ESTATE</div>
+                    <div class="card-content">
+                        <div class="pixel-icon mb-2">🏗</div>
+                        <h4 style="color: var(--accent); margin-bottom: 1rem;">PROPERTY XR</h4>
+                        <ul style="list-style: none; color: var(--text-secondary);">
+                            <li>• Virtual Property Tours</li>
+                            <li>• Architectural Visualization</li>
+                            <li>• Interior Design Preview</li>
+                            <li>• Construction Planning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pixel-card">
+                    <div class="card-title">ENTERTAINMENT</div>
+                    <div class="card-content">
+                        <div class="pixel-icon mb-2">🎮</div>
+                        <h4 style="color: var(--accent); margin-bottom: 1rem;">MEDIA XR</h4>
+                        <ul style="list-style: none; color: var(--text-secondary);">
+                            <li>• Immersive Gaming</li>
+                            <li>• Interactive Storytelling</li>
+                            <li>• Virtual Concerts</li>
+                            <li>• 360° Experiences</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Pricing Tiers -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">SERVICE PACKAGES</h2>
+                <p class="subtitle">Flexible solutions to match your needs and budget</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">STARTER</h3>
+                    <div class="pixel-icon mb-2">📱</div>
+                    <p class="body-text mb-2">Perfect for small businesses exploring XR</p>
+                    <ul style="list-style: none; margin: 1rem 0; color: var(--text-secondary);">
+                        <li>• Basic AR/VR Prototype</li>
+                        <li>• Single Platform</li>
+                        <li>• 2-week Development</li>
+                        <li>• Basic Support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary">GET QUOTE</a>
+                </div>
+
+                <div class="profile-card text-center" style="border-color: var(--accent);">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">PROFESSIONAL</h3>
+                    <div class="pixel-icon mb-2">🚀</div>
+                    <p class="body-text mb-2">Comprehensive solutions for growing companies</p>
+                    <ul style="list-style: none; margin: 1rem 0; color: var(--text-secondary);">
+                        <li>• Full XR Application</li>
+                        <li>• Cross-Platform</li>
+                        <li>• 6-8 week Development</li>
+                        <li>• Analytics Integration</li>
+                        <li>• Premium Support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary">MOST POPULAR</a>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">ENTERPRISE</h3>
+                    <div class="pixel-icon mb-2">🏢</div>
+                    <p class="body-text mb-2">Custom solutions for large organizations</p>
+                    <ul style="list-style: none; margin: 1rem 0; color: var(--text-secondary);">
+                        <li>• Custom Development</li>
+                        <li>• Multi-Platform Deployment</li>
+                        <li>• Ongoing Development</li>
+                        <li>• Cloud Infrastructure</li>
+                        <li>• 24/7 Support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary">CONTACT US</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section">
+        <div class="container">
+            <div class="pixel-card glow-effect text-center" style="max-width: 800px; margin: 0 auto;">
+                <div class="card-title">READY TO GET STARTED?</div>
+                <div class="card-content">
+                    <p class="body-text mb-3">Let's discuss your XR project and find the perfect solution for your business needs. Our team is ready to transform your vision into reality.</p>
+                    
+                    <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                        <a href="contact.html" class="btn btn-primary">START YOUR PROJECT</a>
+                        <a href="portfolio.html" class="btn btn-secondary">VIEW OUR WORK</a>
+                    </div>
+                    
+                    <p class="caption mt-3">Free consultation • No commitment • Expert advice</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <!-- Product Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Product</h3>
-                    <div class="footer-links">
-                        <a href="services.html">Overview</a>
-                        <a href="services.html">Pricing</a>
-                        <a href="services.html">Marketplace</a>
-                        <a href="services.html">Features</a>
-                        <a href="services.html">Integrations</a>
-                        <a href="services.html">Pricing</a>
-                    </div>
-                </div>
-                
-                <!-- Company Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Company</h3>
-                    <div class="footer-links">
-                        <a href="about.html">About</a>
-                        <a href="about.html">Team</a>
-                        <a href="#blog">Blog</a>
-                        <a href="#careers">Careers</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="#privacy">Privacy</a>
-                    </div>
-                </div>
-                
-                <!-- Resources Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Resources</h3>
-                    <div class="footer-links">
-                        <a href="#help">Help</a>
-                        <a href="#sales">Sales</a>
-                        <a href="#advertise">Advertise</a>
-                    </div>
-                </div>
-                
-                <!-- Legal Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Legal</h3>
-                    <div class="footer-links">
-                        <a href="#terms">Term of Services</a>
-                        <a href="#privacy">Privacy Policy</a>
-                    </div>
-                </div>
-                
-                <!-- Social Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Social</h3>
-                    <div class="footer-social">
-                        <a href="#" class="social-link">DISCORD</a>
-                        <a href="#" class="social-link">REDDIT</a>
-                        <a href="#" class="social-link">TWITTER</a>
+            <div class="grid grid-3">
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Createch</h3>
+                    <p class="body-text mb-2">Transforming reality through innovative XR solutions.</p>
+                    <div class="social-links">
                         <a href="#" class="social-link">LINKEDIN</a>
+                        <a href="#" class="social-link">TWITTER</a>
+                        <a href="#" class="social-link">GITHUB</a>
                     </div>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">SERVICES</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#" style="color: var(--text-secondary); text-decoration: none;">Custom Development</a></li>
+                        <li><a href="#" style="color: var(--text-secondary); text-decoration: none;">Digital Transformation</a></li>
+                        <li><a href="#" style="color: var(--text-secondary); text-decoration: none;">XR/AR Solutions</a></li>
+                        <li><a href="#" style="color: var(--text-secondary); text-decoration: none;">Cloud Migration</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">CONTACT</h4>
+                    <p class="body-text">Ready to start your XR journey?</p>
+                    <a href="contact.html" class="btn btn-primary mt-2">Get in Touch</a>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2024 CREATECH SOFTWARE CONSULTANCY. ALL RIGHTS RESERVED.</p>
+            <div style="border-top: 1px solid var(--border-color); margin-top: 3rem; padding-top: 2rem; text-align: center;">
+                <p class="caption">© 2024 Createch. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <style>
-        /* Footer Styles */
-        .footer {
-            background: var(--bg-surface);
-            border-top: 2px solid var(--accent);
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-title {
-            color: var(--text-primary);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 0.1em;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .footer-social {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .social-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--grid-color);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .social-link:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            background: rgba(230, 179, 255, 0.1);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--grid-color);
-            padding-top: 2rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* Footer Responsive */
-        @media (max-width: 1024px) {
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .footer-social {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .social-link {
-                flex: 1;
-                min-width: 120px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-    </style>
+    <script src="assets/js/main.js"></script>
 </body>
 </html> 

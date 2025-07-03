@@ -1,754 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Createch - Premium Software Consultancy | Home</title>
-    <style>
-        /* Design System from claude-design.json - EXACT IMPLEMENTATION */
-        :root {
-            --bg-primary: #1a1a1a;
-            --bg-surface: #2a2a2a;
-            --accent: #e6b3ff;
-            --accent-secondary: #b366ff;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --grid-color: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: monospace, 'Courier New', monospace;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            letter-spacing: 0.1em;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* Grid Background Pattern */
-        .grid-background {
-            background-image: 
-                linear-gradient(rgba(51, 51, 51, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(51, 51, 51, 0.3) 1px, transparent 1px);
-            background-size: 20px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: rgba(42, 42, 42, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--accent);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-            color: var(--bg-primary);
-            padding: 0.8rem 2rem;
-            border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(230, 179, 255, 0.4);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, var(--accent-secondary) 0%, #8a4dcc 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(230, 179, 255, 0.6);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 4vw, 4rem);
-            margin-bottom: 1rem;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(230, 179, 255, 0.5);
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            padding: 0.8rem 2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(230, 179, 255, 0.1);
-            color: var(--text-primary);
-            border-color: var(--text-primary);
-        }
-
-        /* Page Sections */
-        .page-section {
-            padding: 4rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--text-primary);
-            font-weight: bold;
-        }
-
-        /* Pixel Cards */
-        .pixel-card {
-            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-primary) 100%);
-            border: 2px solid var(--accent);
-            padding: 2rem;
-            box-shadow: 0 0 20px rgba(230, 179, 255, 0.3), inset 0 0 20px rgba(230, 179, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .card-title {
-            background: var(--accent);
-            color: var(--bg-primary);
-            padding: 0.5rem 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 1rem;
-            text-shadow: none;
-        }
-
-        .card-content {
-            background: rgba(230, 179, 255, 0.1);
-            padding: 1rem;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        /* Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        }
-
-        .grid-4 {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
-        /* Services Section */
-        .service-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--accent);
-            margin: 0 auto 1rem;
-            filter: drop-shadow(0 0 5px rgba(230, 179, 255, 0.5));
-        }
-
-        /* Quote Form */
-        .quote-form {
-            background: rgba(42, 42, 42, 0.9);
-            border: 1px solid var(--accent);
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--accent);
-            color: var(--text-primary);
-            font-family: inherit;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            background: rgba(42, 42, 42, 0.3);
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            color: var(--accent);
-            font-weight: bold;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            margin-top: 0.5rem;
-        }
-
-        /* Testimonials */
-        .testimonial {
-            background: rgba(42, 42, 42, 0.9);
-            border: 1px solid var(--accent);
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .testimonial-content {
-            font-style: italic;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .testimonial-author {
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-
-        .hover-glow:hover {
-            box-shadow: 0 0 20px rgba(230, 179, 255, 0.5);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .grid-3,
-            .grid-4 {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Createch - Extended Reality Solutions</title>
+    <meta name="description"
+        content="Createch - Leading the future of extended reality with cutting-edge AR, VR, and MR solutions for enterprise and consumer applications.">
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body>
-    <!-- Grid Background -->
-    <div class="grid-background"></div>
 
+<body>
+    <div class="grid-background">
+
+        <!-- <div class="bg-cells-wrapper"><img
+            src="https://cdn.prod.website-files.com/662808a8947ef1613d0a6353/662b53e9a84a63073244409e_bg.svg"
+            loading="lazy" alt="" class="bg-cells"></div>
+        </div> -->
+
+    </div>
+    
+       
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">CREATECH</div>
+            <a href="index.html" class="logo">Createch</a>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="portfolio.html">Our Work</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" class="btn btn-primary">Get in Touch</a></li>
             </ul>
-            <a href="contact.html" class="cta-button">Get A Quote</a>
+            <button class="mobile-menu-toggle">☰</button>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <h1>Digital Solutions</h1>
-                <p class="subtitle">To keep your business one step ahead of the technological curve</p>
-                <div class="hero-buttons">
-                    <a href="services.html" class="cta-button">Get Started</a>
-                    <a href="portfolio.html" class="btn-secondary">View Our Work</a>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title glow-effect">Digital<br>Solutions</h1>
+                <p class="subtitle mb-3">to keep your business one step ahead of the curve.</p>
+                <p class="body-text mb-4" style="max-width: 800px; margin: 0 auto 2rem;">Immerse yourself in
+                    cutting-edge XR solutions that blur the boundaries between physical and digital worlds. We craft
+                    experiences that redefine reality.</p>
+
+                <div class="hero-actions"
+                    style="display: flex; gap: 2rem; justify-content: center; align-items: center; margin-top: 3rem; flex-wrap: wrap;">
+                    <a href="services.html" class="btn btn-primary" style="min-width: 180px;">Get Started</a>
+                    <a href="contact.html" class="btn btn-secondary" style="min-width: 180px;">Get a Quote</a>
+                </div>
+
+                <!-- Scroll indicator -->
+                <div style="margin-top: 4rem; opacity: 0.7;">
+                    <div style="font-size: 0.9rem; color: var(--text-muted);">Scroll to explore</div>
+                    <div style="margin-top: 0.5rem; animation: float 2s ease-in-out infinite;">↓</div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Quick Quote Form -->
-        <section class="page-section">
-            <div class="container">
-                <div class="grid">
-                    <div class="quote-form">
-                        <h3 style="margin-bottom: 1rem; color: var(--accent); text-align: center; text-transform: uppercase;">Get a Quote</h3>
-                        <div class="form-group">
-                            <input type="text" placeholder="Full name" required>
+        <!-- Floating geometric shapes -->
+        <div style="position: absolute; top: 20%; right: 10%; opacity: 0.3;">
+            <div class="pixel-icon"
+                style="width: 100px; height: 100px; font-size: 3rem; animation: float 4s ease-in-out infinite;">◊</div>
+        </div>
+        <div style="position: absolute; bottom: 30%; left: 15%; opacity: 0.2;">
+            <div class="pixel-icon"
+                style="width: 80px; height: 80px; font-size: 2.5rem; animation: float 6s ease-in-out infinite reverse;">
+                ◦</div>
+        </div>
+    </section>
+
+    <!-- Quote Form Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="pixel-card" style="max-width: 700px; margin: 0 auto;">
+                <div class="card-title text-center">Get a Quote</div>
+                <div class="card-content">
+                    <form class="quote-form">
+                        <div class="grid grid-2" style="gap: 1rem;">
+                            <div class="form-group">
+                                <input type="text" id="fullName" name="fullName" class="form-control"
+                                    placeholder="Full name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="emailAddress" name="emailAddress" class="form-control"
+                                    placeholder="Email Address" required>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email Address" required>
+                            <input type="tel" id="contactNumber" name="contactNumber" class="form-control"
+                                placeholder="Contact Number" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Contact Number" required>
-                        </div>
-                        <div class="form-group">
-                            <select required>
-                                <option>Website Development and Design</option>
-                                <option>Mobile Application</option>
-                                <option>Artificial Intelligence & Machine Learning</option>
-                                <option>Cloud Consulting</option>
-                                <option>Database Management</option>
-                                <option>eCommerce Solutions</option>
-                                <option>CRM Implementation</option>
-                                <option>Component Development</option>
-                                <option>Software Development</option>
-                                <option>SEO/SEM</option>
-                                <option>Client Server Application</option>
-                                <option>Block Chain Consultancy</option>
+                            <select id="selectServices" name="selectServices" class="form-control" required>
+                                <option value="">Select Services</option>
+                                <option value="xr-development">XR Development</option>
+                                <option value="mobile-application">Mobile Application</option>
+                                <option value="ai-ml">Artificial Intelligence & Machine Learning</option>
+                                <option value="cloud-consulting">Cloud Consulting</option>
+                                <option value="database-management">Database Management</option>
+                                <option value="ecommerce">eCommerce Solutions</option>
+                                <option value="crm">CRM Implementation</option>
+                                <option value="software-development">Software Development</option>
+                                <option value="blockchain">Block Chain Consultancy</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="More Information" rows="3"></textarea>
+                            <textarea id="moreInfo" name="moreInfo" class="form-control" placeholder="More Information"
+                                rows="4"></textarea>
                         </div>
-                        <button class="cta-button" style="width: 100%;">Submit</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" style="min-width: 200px;">Submit Quote
+                                Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-3">
+                <!-- XR Development -->
+                <div class="pixel-card">
+                    <div class="card-title">XR Development</div>
+                    <div class="card-content">
+                        <p class="body-text">The XR development process can be divided into four distinct phases:
+                            planning, design, development, and launch.</p>
                     </div>
-                    <div>
-                        <div class="pixel-card">
-                            <div class="card-title">Why Choose Createch?</div>
-                            <div class="card-content" style="text-align: left; min-height: auto;">
-                                <p style="margin-bottom: 1rem;">✓ <strong>Expert Team:</strong> Senior developers and architects</p>
-                                <p style="margin-bottom: 1rem;">✓ <strong>Proven Track Record:</strong> 150+ successful projects</p>
-                                <p style="margin-bottom: 1rem;">✓ <strong>Latest Technology:</strong> Cutting-edge frameworks and tools</p>
-                                <p style="margin-bottom: 1rem;">✓ <strong>Client-First Approach:</strong> Your success is our priority</p>
-                                <p>✓ <strong>End-to-End Solutions:</strong> From concept to deployment</p>
+                </div>
+
+                <!-- Mobile Application -->
+                <div class="pixel-card">
+                    <div class="card-title">Mobile Application</div>
+                    <div class="card-content">
+                        <p class="body-text">Mobile application development is the process of creating software
+                            applications that run on a mobile device, such as a smartphone or tablet.</p>
+                    </div>
+                </div>
+
+                <!-- AI & Machine Learning -->
+                <div class="pixel-card">
+                    <div class="card-title">Artificial Intelligence & Machine Learning</div>
+                    <div class="card-content">
+                        <p class="body-text">Custom ML solutions can be used to solve various business problems. Neural
+                            networks, for example, can be used to develop predictive models that can be used to make
+                            decisions about future events.</p>
+                    </div>
+                </div>
+
+                <!-- Cloud Consulting -->
+                <div class="pixel-card">
+                    <div class="card-title">Cloud Consulting</div>
+                    <div class="card-content">
+                        <p class="body-text">Cloud consulting services are a type of professional services that helps
+                            organizations plan, design, implement, and manage cloud computing solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quote Section -->
+            <div class="text-center" style="margin: 4rem 0;">
+                <blockquote
+                    style="background: rgba(42, 42, 42, 0.5); padding: 2rem; border-left: 4px solid var(--accent); font-style: italic; max-width: 800px; margin: 0 auto;">
+                    <p class="body-text" style="font-size: 1.2rem; margin-bottom: 1rem;">"The advance of technology is
+                        based on making it fit in so that you don't really even notice it, so it's part of everyday
+                        life."</p>
+                    <footer class="caption" style="color: var(--accent);">— Bill Gates, Co-founder of Microsoft</footer>
+                </blockquote>
+            </div>
+
+            <div class="text-center">
+                <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 2rem;">Ensure High Availability of
+                    Your Services</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">You Think<br>We Build</h2>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="profile-card">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">One-Stop Solution</h3>
+                    <p class="body-text">Createch is a one-stop solution for XR/Software/Mobile Application Design &
+                        Development. We are a fluid tech company that keeps up to date with the latest technology and
+                        trends in the industry and our products constantly evolve to make sure your ideas and dreams
+                        stay ahead of the market place with the latest technology and enhancements.</p>
+                </div>
+
+                <div class="profile-card">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Personalized Solutions</h3>
+                    <p class="body-text">Createch preaches and follows the principle of 'Client First' to ensure
+                        unparalleled communication, correspondence, updates, experience along with top-end solutions.
+                        "If you have an idea, we have the perfect solution to help make it a reality" However obscure or
+                        perplexing the idea, we will set our wheels in motion to nurture and grow your idea, into the
+                        vivid and powerful form that our clients imagined.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <div class="pixel-card"
+                    style="display: inline-block; padding: 1rem 2rem; background: rgba(42, 42, 42, 0.8);">
+                    <h3 class="section-title" style="font-size: 3rem; margin: 0; color: var(--accent);">16+</h3>
+                    <p class="caption">Year Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Services Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Core Level</h2>
+                <h3 class="section-title">Services</h3>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="profile-card text-center">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">XR Development</h4>
+                    <p class="body-text">Createch is here to help you create a strong and visible presence in the
+                        digital realm, we design based on a keen understanding of your business, goals, and ideas.</p>
+                    <a href="services.html" class="btn btn-secondary mt-2">Learn More</a>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">Cloud Consultancy</h4>
+                    <p class="body-text">Our team is experienced in a variety of cloud computing solutions, such as
+                        cloud migration strategy, cloud migration services and cloud-native design and development.</p>
+                    <a href="services.html" class="btn btn-secondary mt-2">Learn More</a>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">Mobile Application</h4>
+                    <p class="body-text">We at Createch develop Mobile Applications using the latest technological
+                        trends and provide the best looking, easy to use applications for your Business Idea.</p>
+                    <a href="services.html" class="btn btn-secondary mt-2">Learn More</a>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">UI/UX</h4>
+                    <p class="body-text">This plays an immensely important role when it comes to creating
+                        Web/Desktop/Mobile software and application.</p>
+                    <a href="services.html" class="btn btn-secondary mt-2">Learn More</a>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">AI/ML</h4>
+                    <p class="body-text">The allowance and processes to give programs access to connect and essentially,
+                        communicate with other programs. Their APIs are their languages.</p>
+                    <a href="services.html" class="btn btn-secondary mt-2">Learn More</a>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">Block Chain Consultancy</h4>
+                    <p class="body-text">The new era of digital transformation is inevitable. Businesses must change the
+                        way they operate and manage their data to remain competitive.</p>
+                    <a href="services.html" class="btn btn-secondary mt-2">Learn More</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p class="subtitle">Trusted by the world's best organizations, for 16 years and running, it has been
+                    delivering smiles to hundreds of IT advisors, developers, users, and business owners.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="services.html" class="btn btn-primary">Find Your Solution</a>
+                    <a href="services.html" class="btn btn-secondary ml-2">Explore All Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 2rem;">Ensure High Availability of
+                    Your Services</h3>
+                <h2 class="section-title">Timely Service</h2>
+                <p class="subtitle">Provide users with appropriate view and access permissions to requests, problems,
+                    changes, contracts, assets, solutions, and reports with our experienced professionals.</p>
+            </div>
+
+            <div class="grid grid-4">
+                <div class="profile-card text-center">
+                    <h3 class="section-title" style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--accent);">500+
+                    </h3>
+                    <p class="caption">Projects and Software Developed in this Year</p>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h3 class="section-title" style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--accent);">50+
+                    </h3>
+                    <p class="caption">Qualified Employees and Developers with Us</p>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h3 class="section-title" style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--accent);">
+                        1000+</h3>
+                    <p class="caption">Satisfied Clients We Have Served Globally</p>
+                </div>
+
+                <div class="profile-card text-center">
+                    <h3 class="section-title" style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--accent);">16+
+                    </h3>
+                    <p class="caption">Years of Experience in the IT & Software Industry</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Our Clients</h2>
+                <h3 class="section-title">Testimonial</h3>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="testimonial-card">
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-quote">"I have gotten at least 50 times the value from Createch."</p>
+                    <div class="testimonial-author">John Rediehs</div>
+                    <div class="testimonial-title">CEO, TechStart Inc.</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-quote">"These guys rock! I don't know what else to say. Createch is exactly
+                        what our business has been lacking. Thank You!"</p>
+                    <div class="testimonial-author">Christian List</div>
+                    <div class="testimonial-title">Technical Director</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-quote">"Needless to say we are extremely satisfied with the results. I
+                        couldn't have asked for more than this."</p>
+                    <div class="testimonial-author">Beth Kovalcik</div>
+                    <div class="testimonial-title">Project Manager</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="pixel-card glow-effect text-center" style="max-width: 800px; margin: 0 auto;">
+                <div class="card-title">Hire Us Now!</div>
+                <div class="card-content">
+                    <h3 class="section-title" style="margin-bottom: 1rem;">Estimate Your Project & Say Hi on Mail</h3>
+                    <p class="body-text mb-3">We have various processes, methodologies and mantras which have helped us
+                        provide 100% Cost & Time Effective Solutions to our Clients.</p>
+
+                    <div class="text-center">
+                        <a href="contact.html" class="btn btn-primary">Mail Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For You Web Requirements Form -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">For You Web Requirements. Fill the Below Form</h2>
+            </div>
+
+            <div class="pixel-card" style="max-width: 800px; margin: 0 auto;">
+                <div class="card-content">
+                    <form class="contact-form">
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <input type="text" id="yourName" name="yourName" class="form-control"
+                                    placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="yourEmail" name="yourEmail" class="form-control"
+                                    placeholder="Your email" required>
                             </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="yourMessage" name="yourMessage" class="form-control"
+                                placeholder="Your message (optional)" rows="5"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
-
-        <!-- Featured Services -->
-        <section class="page-section">
-            <div class="container">
-                <h2 class="section-title">Featured Services</h2>
-                <div class="grid grid-4">
-                    <div class="pixel-card hover-glow">
-                        <div class="card-title">Website Development</div>
-                        <div class="card-content">
-                            <div class="service-icon"></div>
-                            <p>The website design and development process includes planning, design, development, and launch phases.</p>
-                        </div>
-                    </div>
-                    <div class="pixel-card hover-glow">
-                        <div class="card-title">Mobile Application</div>
-                        <div class="card-content">
-                            <div class="service-icon"></div>
-                            <p>Mobile application development for creating software applications that run on smartphones and tablets.</p>
-                        </div>
-                    </div>
-                    <div class="pixel-card hover-glow">
-                        <div class="card-title">AI & Machine Learning</div>
-                        <div class="card-content">
-                            <div class="service-icon"></div>
-                            <p>Custom ML solutions for various business problems using neural networks and predictive models.</p>
-                        </div>
-                    </div>
-                    <div class="pixel-card hover-glow">
-                        <div class="card-title">Cloud Consulting</div>
-                        <div class="card-content">
-                            <div class="service-icon"></div>
-                            <p>Professional services that help organizations plan, design, implement, and manage cloud computing solutions.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Company Stats -->
-        <section class="stats-section">
-            <div class="container">
-                <div class="grid grid-4">
-                    <div class="stat-item">
-                        <span class="stat-number pulse-animation">50+</span>
-                        <div class="stat-label">Projects And Software Developed This Year</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number pulse-animation">25+</span>
-                        <div class="stat-label">Qualified Employees And Developers With Us</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number pulse-animation">100+</span>
-                        <div class="stat-label">Satisfied Clients We Have Served Globally</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number pulse-animation">5+</span>
-                        <div class="stat-label">Years Of Experience In The IT & Software Industry</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Preview -->
-        <section class="page-section">
-            <div class="container">
-                <h2 class="section-title">You THINK • We BUILD</h2>
-                <div class="grid">
-                    <div class="pixel-card">
-                        <div class="card-title">One-stop Solution</div>
-                        <div class="card-content">
-                            <p>Createch is a one-stop solution for Website/Software/Mobile Application Design & Development. We are a fluid tech company that keeps up to date with the latest technology and trends in the industry.</p>
-                        </div>
-                    </div>
-                    <div class="pixel-card">
-                        <div class="card-title">Personalized Solutions</div>
-                        <div class="card-content">
-                            <p>Createch practices the principle of 'Client First' to ensure unparalleled communication and top-end solutions. "If you have an idea, we have the perfect methodology to help make it a reality."</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="page-section">
-            <div class="container">
-                <h2 class="section-title">Client Testimonials</h2>
-                <div class="grid grid-3">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            "I have gotten at least 50 times the value from Createch."
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>John Richardson</strong><br>
-                            CEO, T-TMS
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            "You guys rock! I don't know what else to say. Createch is exactly what our business has been lacking. Thank You!"
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Christian List</strong><br>
-                            Technical Director
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            "Needless to say we are extremely satisfied with the results. I couldn't have asked for more than this."
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Beth Kovalcik</strong><br>
-                            Project Manager
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="page-section">
-            <div class="container">
-                <div class="pixel-card" style="text-align: center;">
-                    <div class="card-title">Hire Us Now!</div>
-                    <div class="card-content">
-                        <h3 style="margin-bottom: 1rem;">Estimate Your Project & Say Hi On Mail</h3>
-                        <a href="contact.html" class="cta-button">Mail Us</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <!-- Product Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Product</h3>
-                    <div class="footer-links">
-                        <a href="services.html">Overview</a>
-                        <a href="services.html">Pricing</a>
-                        <a href="services.html">Marketplace</a>
-                        <a href="services.html">Features</a>
-                        <a href="services.html">Integrations</a>
-                        <a href="services.html">Pricing</a>
+            <div class="grid grid-3">
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Createch</h3>
+                    <p class="body-text mb-2">Transforming reality through innovative XR solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Youtube</a>
+                        <a href="#" class="social-link">Instagram</a>
                     </div>
                 </div>
-                
-                <!-- Company Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Company</h3>
-                    <div class="footer-links">
-                        <a href="about.html">About</a>
-                        <a href="about.html">Team</a>
-                        <a href="#blog">Blog</a>
-                        <a href="#careers">Careers</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="#privacy">Privacy</a>
-                    </div>
+
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">Services</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">XR
+                                Design & Development</a></li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">Mobile
+                                Application</a></li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">API
+                                Development</a></li>
+                        <li><a href="services.html"
+                                style="color: var(--text-secondary); text-decoration: none;">eCommerce Solutions</a>
+                        </li>
+                        <li><a href="services.html"
+                                style="color: var(--text-secondary); text-decoration: none;">Component Development</a>
+                        </li>
+                        <li><a href="services.html" style="color: var(--text-secondary); text-decoration: none;">CRM
+                                Implementation</a></li>
+                    </ul>
                 </div>
-                
-                <!-- Resources Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Resources</h3>
-                    <div class="footer-links">
-                        <a href="#help">Help</a>
-                        <a href="#sales">Sales</a>
-                        <a href="#advertise">Advertise</a>
-                    </div>
-                </div>
-                
-                <!-- Legal Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Legal</h3>
-                    <div class="footer-links">
-                        <a href="#terms">Term of Services</a>
-                        <a href="#privacy">Privacy Policy</a>
-                    </div>
-                </div>
-                
-                <!-- Social Column -->
-                <div class="footer-section">
-                    <h3 class="footer-title">Social</h3>
-                    <div class="footer-social">
-                        <a href="#" class="social-link">DISCORD</a>
-                        <a href="#" class="social-link">REDDIT</a>
-                        <a href="#" class="social-link">TWITTER</a>
-                        <a href="#" class="social-link">LINKEDIN</a>
-                    </div>
+
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">Quick Links</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="about.html" style="color: var(--text-secondary); text-decoration: none;">About
+                                Us</a></li>
+                        <li><a href="services.html"
+                                style="color: var(--text-secondary); text-decoration: none;">Services</a></li>
+                        <li><a href="contact.html"
+                                style="color: var(--text-secondary); text-decoration: none;">Contact</a></li>
+                    </ul>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2024 CREATECH SOFTWARE CONSULTANCY. ALL RIGHTS RESERVED.</p>
+
+            <div class="grid grid-2"
+                style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 1rem;">Contact</h4>
+                    <p class="body-text">• 800 W. 79th Street, Willowbrook, IL 60527, Metropolitan Chicago</p>
+                    <p class="body-text">• 608, Synergy court Kaanchpada Malad (W), Mumbai-400064</p>
+                    <p class="body-text">• info@createch-xr.com</p>
+                </div>
+                <div class="text-center">
+                    <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+                </div>
+            </div>
+
+            <div
+                style="border-top: 1px solid var(--border-color); margin-top: 3rem; padding-top: 2rem; text-align: center;">
+                <p class="caption">© 2024 Createch. All Rights Reserved. | Privacy Policy | Terms & Conditions</p>
             </div>
         </div>
     </footer>
 
-    <style>
-        /* Footer Styles */
-        .footer {
-            background: var(--bg-surface);
-            border-top: 2px solid var(--accent);
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-title {
-            color: var(--text-primary);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 0.1em;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .footer-social {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .social-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--grid-color);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .social-link:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            background: rgba(230, 179, 255, 0.1);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--grid-color);
-            padding-top: 2rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* Footer Responsive */
-        @media (max-width: 1024px) {
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .footer-social {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .social-link {
-                flex: 1;
-                min-width: 120px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-    </style>
+    <script src="assets/js/main.js"></script>
 </body>
-</html> 
+
+</html>
