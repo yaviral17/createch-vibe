@@ -1,12 +1,14 @@
-# Createch XR - Extended Reality Solutions
+# Createch - Digital Solutions & Technology Services
 
 <div align="center">
 
-![Createch XR](https://img.shields.io/badge/Createch-XR%20Solutions-e6b3ff?style=for-the-badge&logo=virtual-reality)
+![Createch](https://img.shields.io/badge/Createch-Digital%20Solutions-e6b3ff?style=for-the-badge&logo=code)
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-**Leading the future of extended reality with cutting-edge AR, VR, and MR solutions**
+**Digital solutions to keep your business one step ahead of the curve**
+
+*Formerly Creative Mantra - Now rebranded as Createch*
 
 [Live Demo](#) • [Documentation](#) • [Contact](#contact)
 
@@ -17,6 +19,7 @@
 ## 📋 Table of Contents
 
 - [Overview](#overview)
+- [Company Background](#company-background)
 - [Project Structure](#project-structure)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
@@ -31,15 +34,39 @@
 
 ## 🌟 Overview
 
-Createch XR is a modern, cyberpunk-themed website showcasing extended reality (XR) solutions including Virtual Reality (VR), Augmented Reality (AR), and Mixed Reality (MR) services. The project features a sleek dark theme with purple accent colors, monospace typography, and immersive grid backgrounds.
+Createch (formerly Creative Mantra) is a modern, cyberpunk-themed website showcasing comprehensive digital solutions and technology services. This project represents the company's rebrand and digital transformation, featuring a sleek dark theme with purple accent colors, monospace typography, and immersive grid backgrounds.
 
 ### Key Highlights
 
-- **🎯 Modern XR Focus**: Specialized in cutting-edge extended reality solutions
-- **🎨 Cyberpunk Aesthetic**: Dark theme with neon purple accents and grid patterns
+- **🎯 Full-Service Technology**: One-stop solution for web, mobile, and software development
+- **🎨 Modern Cyberpunk Design**: Dark theme with neon purple accents and grid patterns
 - **📱 Fully Responsive**: Optimized for all devices and screen sizes
-- **⚡ Fast Loading**: Resource preloading for optimal performance
-- **🎭 Professional Design**: Clean, minimalist interface with smooth animations
+- **⚡ Fast Performance**: Resource preloading and optimized assets
+- **🎭 Professional Interface**: Clean, minimalist design with smooth animations
+
+---
+
+## 🏢 Company Background
+
+### The Rebrand: Creative Mantra → Createch
+
+Creative Mantra, an established IT company with years of experience in digital solutions, is being rebranded as **Createch** to better reflect its modern approach to technology and innovation.
+
+### About Creative Mantra (Now Createch)
+
+**Creative Mantra** has been a leading provider of digital solutions with a strong foundation in:
+
+- **🌍 Global Presence**: Offices in Metropolitan Chicago and Mumbai
+- **💼 Comprehensive Services**: Full-stack technology solutions
+- **👥 Client-First Approach**: Personalized solutions and dedicated customer relations
+- **📈 Industry Experience**: Years of expertise in IT & software industry
+- **🔄 Continuous Innovation**: Keeping up with latest technology trends
+
+### Core Philosophy
+
+*"If you have an idea, we have the perfect Creative Mantra to help make it a reality"*
+
+The company follows the principle of **'Client First'** to ensure unparalleled communication, correspondence, updates, and experience along with top-end solutions.
 
 ---
 
@@ -104,13 +131,28 @@ Contains the production-ready implementation with:
 
 ### 🚀 Core Features
 
-- **Interactive Loading Screen**: Minimalist percentage-based loader inspired by modern XR interfaces
+- **Interactive Loading Screen**: Minimalist percentage-based loader with modern tech aesthetic
 - **Responsive Navigation**: Smooth, collapsible navigation with active states
-- **Service Showcase**: Comprehensive XR, AI/ML, and cloud consulting services
+- **Service Showcase**: Comprehensive technology and digital solutions
 - **Portfolio Gallery**: Project showcases with filtering and modal views
 - **Contact Forms**: Multi-step quote request and contact forms
 - **Blog System**: Article management with categories and search
 - **Grid Backgrounds**: Animated cyberpunk-style grid overlays
+
+### 🛠 Digital Services Highlighted
+
+Based on Creative Mantra's service portfolio:
+
+- **Website Development & Design**: Complete web solutions from planning to launch
+- **Mobile Applications**: iOS and Android app development
+- **AI & Machine Learning**: Custom ML solutions and neural networks
+- **Cloud Consulting**: Migration strategies and cloud-native development
+- **eCommerce Solutions**: Online store development and management
+- **CRM Implementation**: Customer relationship management systems
+- **Software Development**: Custom software solutions
+- **Blockchain Consultancy**: Modern blockchain implementations
+- **UI/UX Design**: User interface and experience design
+- **No-Code Solutions**: Bubble.io and other no-code platforms
 
 ### 🎨 Design Features
 
@@ -330,10 +372,19 @@ assets/js/main.js
 
 ## 📞 Contact
 
-**Createch XR Team**
-- 📧 Email: [contact@createch-xr.com](mailto:contact@createch-xr.com)
-- 🌐 Website: [www.createch-xr.com](https://www.createch-xr.com)
-- 💼 LinkedIn: [Createch XR Solutions](https://linkedin.com/company/createch-xr)
+**Createch (Formerly Creative Mantra)**
+
+### Global Offices
+- **🇺🇸 Chicago Office**: 800 W. 79th Street, Willowbrook, IL 60527, Metropolitan Chicago
+- **🇮🇳 Mumbai Office**: 608, Synergy court Kaanchpada Malad (W), Mumbai-400064
+
+### Get In Touch
+- 📧 **Email**: [info@creative-mantra.com](mailto:info@creative-mantra.com)
+- 🌐 **Website**: [creative-mantra.com](https://creative-mantra.com)
+- 💼 **LinkedIn**: [Creative Mantra](https://linkedin.com/company/creative-mantra)
+
+### Services Inquiry
+For project estimates and service inquiries, use the quote form on our website or contact us directly.
 
 ---
 
@@ -345,7 +396,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Design Inspiration**: Modern XR interfaces and cyberpunk aesthetics
+- **Company Heritage**: Built on Creative Mantra's years of experience in digital solutions
+- **Design Inspiration**: Modern tech interfaces and cyberpunk aesthetics
 - **Font**: VT323 by Google Fonts
 - **Grid Patterns**: Inspired by sci-fi UI designs
 - **Color Palette**: Carefully selected for accessibility and visual impact
@@ -354,7 +406,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Built with ❤️ for the future of Extended Reality**
+**Built with ❤️ for the future of Digital Technology**
+
+*Evolving from Creative Mantra to Createch - Keeping your business one step ahead of the curve*
 
 ⭐ Star this repo if you found it helpful!
 
