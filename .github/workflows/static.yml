@@ -31,13 +31,37 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Prepare deployment files
+        run: |
+          # Create a temporary deployment directory
+          mkdir -p deploy
+          
+          # Copy all wireframe files to deploy directory
+          cp -r wireframe/* deploy/
+          
+          # Rename current index.html to main.html
+          mv deploy/index.html deploy/main.html
+          
+          # Copy loading.html to index.html (making it the entry point)
+          cp deploy/loading.html deploy/index.html
+          
+          # Update the redirect in index.html to point to main.html instead of index.html
+          sed -i 's/window.location.href = '\''index.html'\''/window.location.href = '\''main.html'\''/g' deploy/index.html
+          
+          # List files for verification
+          echo "Deployment files:"
+          ls -la deploy/
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: './wireframe'
+          # Upload the prepared deployment directory
+          path: './deploy'
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
